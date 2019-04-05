@@ -40,4 +40,4 @@ Week | Milestone | Details
 
 Thank you to:
 * The Hive: Nicole Smith
-* CS + SG: Tess and Michelle
+* CS + SG: Tess Rinaldo and Michelle Julia
