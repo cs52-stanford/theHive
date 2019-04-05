@@ -2,16 +2,16 @@
 (This is a sample README based on a 2017-2018 project which is described [here](https://docs.google.com/presentation/d/1IEg6mPC_QWvWVlcaovjPBC3xovZGu4Lv01wZbglIj9M/edit#slide=id.g51ee624732_0_151))
 
 # Our Partner Organization
-Impact Experience aims to build bridges between investors, foundations, entrepreneurs, and local leaders to co-fund and co-develop impactful solutions to the problems of marginalized communities. Each Impact Experience typically includes 20 to 30 participants and lasts between one and a half to three days. To more intimately understand the challenges communities are facing, the expertly-facilitated process includes site visits and conversations with local leaders.
+The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
 # The Challenge
 Conversations created at Impact Experience conferences need a platform to remain relevant. After the initial interest, communities lack the ability to follow-up on commitments.
 
 # Our solution
-After engaging in needfinding with partner org and community stakeholders, we arrived at the following solution. To maintain engagement with a new platform, we need to create a niche forum for social impact discussions. The forum will:
-* Engage users in relevant blog content
-* Update community on completed commitments from Impact Experience events
-* Connect alumni, investors, and staff
+Our team has had extensive conversations with the staff at Hive, including their communications team. Through these conversations, we agreed to create the following tools which can help to increase donor engagement. These tools have been be combined into a dashboard for The Hive to be able to access them easily. 
+* Twitter influencer tool, with geo-location - identifies Twitter users in specific regions of the US whose tweets in relation to refugees are widely retweeted or replied to.
+* News aggregator - identifies refugee-related news items, especially in local news, that The Hive might not otherwise be aware of.
+* Word chart - shows the frequently occurring words in social media and news items relating to refugees.
 
 # Our Live Demo
 [Here](blank.org)
