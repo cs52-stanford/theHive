@@ -39,5 +39,5 @@ Week | Milestone | Details
 
 
 Thank you to:
-* Impact Experience: Chisato Fukada, Jenna Nicholas
-* CS + SG: Swathi Iyer
+* The Hive: Nicole Smith
+* CS + SG: Tess and Michelle
