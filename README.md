@@ -5,7 +5,7 @@
 The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
 # The Challenge
-Conversations created at Impact Experience conferences need a platform to remain relevant. After the initial interest, communities lack the ability to follow-up on commitments.
+Improve The Hive’s donor engagement and fundraising efficacy via social media analysis to aid in their marketing strategy development. This is best achieved in a few ways: by identifying social media “influencers”, recognizing trends in donor sentiment by geographical region, examining word usage and effectiveness in donor appeal and retention, and locating region specific refugee-related news stories.
 
 # Our solution
 Our team has had extensive conversations with the staff at Hive, including their communications team. Through these conversations, we agreed to create the following tools which can help to increase donor engagement. These tools have been be combined into a dashboard for The Hive to be able to access them easily. 
