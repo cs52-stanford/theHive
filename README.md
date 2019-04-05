@@ -2,6 +2,8 @@
   <img src="https://github.com/cs52-2019/theHive/blob/master/Hive_PrimaryOneColor_redo.png" alt="The Hive"/>
 </p>
 
+![](compare.gif)
+
 # The Hive
 The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
