@@ -18,7 +18,7 @@ Our team has had extensive conversations with the staff at Hive, including their
 
 ![](compare.gif)
 ![](search.gif)
-![](sentiment detail.gif)
+![](sentimentdetail.gif)
 
 
 # Who We Are
