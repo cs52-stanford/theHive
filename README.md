@@ -1,7 +1,4 @@
 # The Hive
-(This is a sample README based on a 2017-2018 project which is described [here](https://docs.google.com/presentation/d/1IEg6mPC_QWvWVlcaovjPBC3xovZGu4Lv01wZbglIj9M/edit#slide=id.g51ee624732_0_151))
-
-# Our Partner Organization
 The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
 # The Challenge
