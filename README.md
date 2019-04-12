@@ -28,7 +28,7 @@ JK Hunt | jkhunt@stanford.edu | JK is an undergraduate student from London at St
 Pamela Tham | pamtham@stanford.edu | Pamela is a student at the Graduate School of Education at Stanford. She is interested in creating and developing mastery in tools that support organizational improvement and better student outcomes. She has worked as an elementary school teacher and a civil servant in Singapore's Ministry of Education and Ministry of Finance, and is excited about how technology can help to improve access and equity in education.  
 Jessica Chen | jchens@stanford.edu | Jessica is ...
 Sasankh Munukutla | sasankh@stanford.edu | Sasankh is an undergraduate student at Stanford studying Computer Science from Singapore. He is passionate about fusing technology and social impact. His past experience includes social service, software and hardware projects and military leadership. With an interest in NLP and broadening perspectives, he is excited about how this project can change the conversation around the refugee crisis.
-Mustafa Khan | mkhan7@stanford.edu | Mustafa is ...
+Mustafa Khan | mkhan7@stanford.edu | Mustafa is an undergraduate Symbolic Systems major at Stanford from Lahore, Pakistan, concentrating in Artificial Intelligence. He has a background in social entrepreneurship and looks to delve into the intersection of technology and social impact. He is excited to launch this project to the benefit of changing the conversation about refugees.
 
 # Our Development Timeline
 Week | Milestone | Details
