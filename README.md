@@ -1,29 +1,34 @@
-# The Hive
-(This is a sample README based on a 2017-2018 project which is described [here](https://docs.google.com/presentation/d/1IEg6mPC_QWvWVlcaovjPBC3xovZGu4Lv01wZbglIj9M/edit#slide=id.g51ee624732_0_151))
+<p align="center">
+  <img src="https://github.com/cs52-2019/theHive/blob/master/Hive_PrimaryOneColor_redo.png" alt="The Hive"/>
+</p>
 
-# Our Partner Organization
-Impact Experience aims to build bridges between investors, foundations, entrepreneurs, and local leaders to co-fund and co-develop impactful solutions to the problems of marginalized communities. Each Impact Experience typically includes 20 to 30 participants and lasts between one and a half to three days. To more intimately understand the challenges communities are facing, the expertly-facilitated process includes site visits and conversations with local leaders.
+# The Hive
+The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
 # The Challenge
-Conversations created at Impact Experience conferences need a platform to remain relevant. After the initial interest, communities lack the ability to follow-up on commitments.
+Improve The Hive’s donor engagement and fundraising efficacy via social media analysis to aid in their marketing strategy development. This is best achieved in a few ways: by identifying social media “influencers”, recognizing trends in donor sentiment by geographical region, examining word usage and effectiveness in donor appeal and retention, and locating region specific refugee-related news stories.
 
 # Our solution
-After engaging in needfinding with partner org and community stakeholders, we arrived at the following solution. To maintain engagement with a new platform, we need to create a niche forum for social impact discussions. The forum will:
-* Engage users in relevant blog content
-* Update community on completed commitments from Impact Experience events
-* Connect alumni, investors, and staff
+Our team has had extensive conversations with the staff at Hive, including their communications team. Through these conversations, we agreed to create the following tools which can help to increase donor engagement. These tools have been be combined into a dashboard for The Hive to be able to access them easily.
+* Twitter influencer tool, with geo-location - identifies Twitter users in specific regions of the US whose tweets in relation to refugees are widely retweeted or replied to.
+* News aggregator - identifies refugee-related news items, especially in local news, that The Hive might not otherwise be aware of.
+* Word chart - shows the frequently occurring words in social media and news items relating to refugees.
 
 # Our Live Demo
-[Here](blank.org)
+
+![](compare.gif)
+![](search.gif)
+![](sentimentdetail.gif)
+
 
 # Who We Are
 Member | Email | Bio
 --- | --- | ---
-Tara Iyer | tiyer@stanford.edu | Tara is a senior majoring in computer science who is interested in work at the intersection of CS, business, and public policy. She has completed software engineering and product management internships at Microsoft and Salesforce, and will be joining McKinsey and Company as a business analyst after graduating. Tara enjoys playing violin in various classical music groups on campus, and loves to spend her free time reading, traveling, and watching British television shows.
-Benjamin Hannel | bhannel@stanford.edu | Ben is a coterm in Computer Science (BS '19, MS '20) who enjoys problems that involve thinking across multiple abstraction layers. He has worked at Tesla, Nav Q, and Facebook. In his free times, he likes to mountain bike, sail, and consüme memes.
-Vik Pattabi | vpattabi@stanford.edu | Vik is a senior / coterm in Computer Science (BS '19, MS '20) and is also pursuing a minor in mechanical engineering. He's interested in crypto (both -graphy and -currencies), natural language processing, computer vision, robotics, and autonomous decision making. He has worked in both research and industry, including companies such as Microsoft and the Boston Consulting Group.
-Andrew Zhang  | azhang97@stanford.edu | Andrew is a senior and coterminal student in Computer Science (BS '19, MS '20) with a focus in AI. He has worked in industry at Twitter, Google, and Facebook. In his free time, he enjoys food, reading, strategy and board games, and implementing pet projects.
-Lily Liu | lliu23@stanford.edu | Lily is a senior majoring in computer science and minoring in psychology. She will be joining Evercore as an investment banking analyst in their technology mergers & acquisitions group after graduation. In her spare time, she enjoys dancing (social dancing, Korean pop), playing sports, and learning more about fashion and beauty.
+JK Hunt | jkhunt@stanford.edu | JK is an undergraduate student from London at Stanford studying Computer Science. He is interested in the intersection between social good and computer science, in particular machine learning and natural language processing.
+Pamela Tham | pamtham@stanford.edu | Pamela is a student at the Graduate School of Education at Stanford. She is interested in creating and developing mastery in tools that support organizational improvement and better student outcomes. She has worked as an elementary school teacher and a civil servant in Singapore's Ministry of Education and Ministry of Finance, and is excited about how technology can help to improve access and equity in education.  
+Jessica Chen | jchens@stanford.edu | Jessica is ...
+Sasankh Munukutla | sasankh@stanford.edu | Sasankh is an undergraduate student at Stanford studying Computer Science from Singapore. He is passionate about fusing technology and social impact. His past experience includes social service, software and hardware projects and military leadership. With an interest in NLP and broadening perspectives, he is excited about how this project can change the conversation around the refugee crisis.
+Mustafa Khan | mkhan7@stanford.edu | Mustafa is an undergraduate Symbolic Systems major at Stanford from Lahore, Pakistan, concentrating in Artificial Intelligence. He has a background in social entrepreneurship and looks to delve into the intersection of technology and social impact. He is excited to launch this project to the benefit of changing the conversation about refugees.
 
 # Our Development Timeline
 Week | Milestone | Details
@@ -39,8 +44,96 @@ Week | Milestone | Details
 10 | |
 
 
-
-
 Thank you to:
-* Impact Experience: Chisato Fukada, Jenna Nicholas
-* CS + SG: Swathi Iyer
+* The Hive: Nicole Smith
+* CS + SG: Tess Rinaldo and Michelle Julia
+
+# Influencers identified using these criteria in "Search a better world" Hackathon:
+Who are major Twitter Influencers regarding Refugees?
+
+Influencer score (Raw) = 
+
+	[Followers] * [Tweets] * [Retweets] * [Favorites] 
+
+Power BI formula = 
+original_tweets[Followers]*original_tweets[Tweets]*[retweet_count]*[favorite_count]/10^10
+
+Influencer score (Weighted) = 
+
+( ( ([Retweets] *0.7) ^2 +([Favorites]*0.3)^2 ) / [Tweets] ) * Log([Followers])^3
+
+Power BI formula = 
+CALCULATE(divide((sum(original_tweets[retweet_count])*.7)^2+(sum(original_tweets[favorite_count])*.3)^2,sum(original_tweets[Tweets]))*[Log of Followers]^3/10^9,ALLEXCEPT(original_tweets,original_tweets[user.screen_name]))
+
+
+# Search terms used by "Search a better world" hackathon:
+
+@Refugees
+@UNRefugeeAgency
+asylum
+asylumseeker
+immigrants
+migrants
+refugee
+RefugeesWelcome
+rohingya
+rohingyarefugees
+syrianrefugee
+syrianrefugees
+TEDxKakumaCamp
+unhcr
+USA
+withrefugees
+
+
+This list has a general positive word association with refugees and may (likely) excludes negative contributors that we want to focus on. 
+
+# Additional search terms recommended by "Search a better world" hackathon:
+
+Recommend repeat exercise using “wider net” of terms 
+Following list sample, not inclusive
+Assimilation
+Assisted Voluntary Return
+Border management
+Brain drain
+Brain gain
+Capacity building
+Circular migration
+Country of origin
+Emigration
+Facilitated migration
+Forced migration
+Freedom of movement
+Immigration
+Internally displaced person
+International minimum standards
+Irregular migration
+Labour migration
+Migration
+Migration management
+Naturalization
+Orderly migration
+Push-pull factors
+Receiving country
+Repatriation
+Remittances
+Resettlement
+Smuggling
+Stateless person
+Technical cooperation
+Trafficking in persons
+Xenophobia
+Alien
+Illegal Immigrant
+Illegals
+Undocumented
+Caravan
+UNHCR
+UN Refugees
+ICE
+deportation
+border wall
+illegal border crossing
+ 
+
+
