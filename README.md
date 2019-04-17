@@ -44,8 +44,96 @@ Week | Milestone | Details
 10 | |
 
 
-
-
 Thank you to:
 * The Hive: Nicole Smith
 * CS + SG: Tess Rinaldo and Michelle Julia
+
+# Influencers identified using these criteria in "Search a better world" Hackathon:
+Who are major Twitter Influencers regarding Refugees?
+
+Influencer score (Raw) = 
+
+	[Followers] * [Tweets] * [Retweets] * [Favorites] 
+
+Power BI formula = 
+original_tweets[Followers]*original_tweets[Tweets]*[retweet_count]*[favorite_count]/10^10
+
+Influencer score (Weighted) = 
+
+( ( ([Retweets] *0.7) ^2 +([Favorites]*0.3)^2 ) / [Tweets] ) * Log([Followers])^3
+
+Power BI formula = 
+CALCULATE(divide((sum(original_tweets[retweet_count])*.7)^2+(sum(original_tweets[favorite_count])*.3)^2,sum(original_tweets[Tweets]))*[Log of Followers]^3/10^9,ALLEXCEPT(original_tweets,original_tweets[user.screen_name]))
+
+
+# Search terms used by "Search a better world" hackathon:
+
+@Refugees
+@UNRefugeeAgency
+asylum
+asylumseeker
+immigrants
+migrants
+refugee
+RefugeesWelcome
+rohingya
+rohingyarefugees
+syrianrefugee
+syrianrefugees
+TEDxKakumaCamp
+unhcr
+USA
+withrefugees
+
+
+This list has a general positive word association with refugees and may (likely) excludes negative contributors that we want to focus on. 
+
+# Additional search terms recommended by "Search a better world" hackathon:
+
+Recommend repeat exercise using “wider net” of terms 
+Following list sample, not inclusive
+Assimilation
+Assisted Voluntary Return
+Border management
+Brain drain
+Brain gain
+Capacity building
+Circular migration
+Country of origin
+Emigration
+Facilitated migration
+Forced migration
+Freedom of movement
+Immigration
+Internally displaced person
+International minimum standards
+Irregular migration
+Labour migration
+Migration
+Migration management
+Naturalization
+Orderly migration
+Push-pull factors
+Receiving country
+Repatriation
+Remittances
+Resettlement
+Smuggling
+Stateless person
+Technical cooperation
+Trafficking in persons
+Xenophobia
+Alien
+Illegal Immigrant
+Illegals
+Undocumented
+Caravan
+UNHCR
+UN Refugees
+ICE
+deportation
+border wall
+illegal border crossing
+ 
+
+
