@@ -9,6 +9,7 @@ const profilesList = [
     positive: false,
     hashtags: "#RefugeesWelcome", "@HelpRefugees",
     influencers: "@Redhourben",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
     city: Los Angeles,
@@ -19,6 +20,7 @@ const profilesList = [
     positive: false,
     hashtags: "#RefugeesWelcome", "#HelpRefugees",
     influencers: "@TheRealAlekWek",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
     city: Chicago,
@@ -29,6 +31,7 @@ const profilesList = [
     positive: true,
     hashtags: "#RefugeesWelcome", "#HelpRefugees",
     influencers: "@KristinDavis",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
     city: Houston,
@@ -39,6 +42,7 @@ const profilesList = [
     positive: true,
     hashtags: "#RefugeesWelcome", "#HelpRefugees",
     influencers: "@neilhimself",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
     city: Philadelphia,
@@ -49,6 +53,7 @@ const profilesList = [
     positive: false,
     hashtags: "#RefugeesWelcome", "#HelpRefugees",
     influencers: "@BH_officiel",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
     city: Phoenix,
@@ -59,6 +64,7 @@ const profilesList = [
     positive: false,
     hashtags: "#RefugeesWelcome", "#HelpRefugees",
     influencers: "@atomaraullo",
+    topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
 ]
 
