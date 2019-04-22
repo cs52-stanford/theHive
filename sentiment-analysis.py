@@ -5,6 +5,9 @@ import urllib
 import os
 import twitter
 import tweepy
+from tweepy import OAuthHandler
+
+
 
 def main():
     url = urllib.request("http://search.twitter.com/search.json?q="+"refugee")
