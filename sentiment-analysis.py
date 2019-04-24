@@ -25,13 +25,11 @@ def main():
     for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
         print (tweet.created_at, tweet.text)
         csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
-        tweet_ref = ref.child('Tweet')
+        tweet_ref = ref.child('Tweets')
         new_tweet = tweet_ref.push()
         new_tweet.set({
-            'Tweet': {
-                'Date:': str(tweet.created_at),
-                'Tweet': tweet.text,
-            }
+            'Date:': str(tweet.created_at),
+            'Tweet': tweet.text,
         })
 
 def read_credentials():
@@ -48,7 +46,7 @@ def read_credentials():
     firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://hive-258ce.firebaseio.com/'
     })
-    return credentials
+    return creds
 
 class MyStreamListener(tweepy.StreamListener):
 
