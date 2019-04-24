@@ -51,18 +51,18 @@ Thank you to:
 # Influencers identified using these criteria in "Search a better world" Hackathon:
 Who are major Twitter Influencers regarding Refugees?
 
-Influencer score (Raw) = 
+Influencer score (Raw) =
 
-	[Followers] * [Tweets] * [Retweets] * [Favorites] 
+	[Followers] * [Tweets] * [Retweets] * [Favorites]
 
-Power BI formula = 
+Power BI formula =
 original_tweets[Followers]*original_tweets[Tweets]*[retweet_count]*[favorite_count]/10^10
 
-Influencer score (Weighted) = 
+Influencer score (Weighted) =
 
 ( ( ([Retweets] *0.7) ^2 +([Favorites]*0.3)^2 ) / [Tweets] ) * Log([Followers])^3
 
-Power BI formula = 
+Power BI formula =
 CALCULATE(divide((sum(original_tweets[retweet_count])*.7)^2+(sum(original_tweets[favorite_count])*.3)^2,sum(original_tweets[Tweets]))*[Log of Followers]^3/10^9,ALLEXCEPT(original_tweets,original_tweets[user.screen_name]))
 
 
@@ -86,11 +86,11 @@ USA
 withrefugees
 
 
-This list has a general positive word association with refugees and may (likely) excludes negative contributors that we want to focus on. 
+This list has a general positive word association with refugees and may (likely) excludes negative contributors that we want to focus on.
 
 # Additional search terms recommended by "Search a better world" hackathon:
 
-Recommend repeat exercise using “wider net” of terms 
+Recommend repeat exercise using “wider net” of terms
 Following list sample, not inclusive
 Assimilation
 Assisted Voluntary Return
@@ -134,6 +134,3 @@ ICE
 deportation
 border wall
 illegal border crossing
- 
-
-

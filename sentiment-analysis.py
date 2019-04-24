@@ -2,46 +2,52 @@ import numpy as np
 import csv
 import tweepy
 from tweepy import OAuthHandler
+import pyrebase
+
+import firebase_admin
+from firebase_admin import credentials, db
+
+
+
 
 kRequests = 450 #450 searches per 15/mins limit
 
 def main():
-    credentials = read_credentials()
-    auth = OAuthHandler(credentials['consumer_key'], credentials['consumer_secret'])
-    auth.set_access_token(credentials['access_token'], credentials['access_token_secret'])
+    creds = read_credentials()
+    auth = OAuthHandler(creds['consumer_key'], creds['consumer_secret'])
+    auth.set_access_token(creds['access_token'], creds['access_token_secret'])
     api = tweepy.API(auth)
-
-    # user = api.me()
-    # print('Name: ' + user.name)
-    # print('Location: ' + user.location)
-    # print('Friends: ' + str(user.friends_count))
-
-    # myStreamListener = MyStreamListener()
-    # myStream = tweepy.Stream(auth = api.auth, listener= MyStreamListener())
-    # myStream.filter(track=['refugee'])
 
     csvOutput = open('saved-tweets.csv', 'a')
     csvWriter = csv.writer(csvOutput)
 
+    ref = db.reference()
     for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
         print (tweet.created_at, tweet.text)
         csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
-        print(tweet.place)
-
-    # url = urllib.request("http://search.twitter.com/search.json?q="+"refugee")
-    # data = json.load(url)
-    # print (len(data), "tweets")
-    #
-    # for tweet in data["results"]:
-    #     print (tweet["text"])
+        tweet_ref = ref.child('Tweet')
+        new_tweet = tweet_ref.push()
+        new_tweet.set({
+            'Tweet': {
+                'Date:': str(tweet.created_at),
+                'Tweet': tweet.text,
+            }
+        })
 
 def read_credentials():
+    # Twitter API setup
     keyFile = open('credentials.txt', 'r')
-    credentials = {}
-    credentials['consumer_key'] = keyFile.readline().rstrip()
-    credentials['consumer_secret'] = keyFile.readline().rstrip()
-    credentials['access_token'] = keyFile.readline().rstrip()
-    credentials['access_token_secret'] = keyFile.readline().rstrip()
+    creds = {}
+    creds['consumer_key'] = keyFile.readline().rstrip()
+    creds['consumer_secret'] = keyFile.readline().rstrip()
+    creds['access_token'] = keyFile.readline().rstrip()
+    creds['access_token_secret'] = keyFile.readline().rstrip()
+
+    # firebase setup
+    cred = credentials.Certificate("firebase-cred.json")
+    firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://hive-258ce.firebaseio.com/'
+    })
     return credentials
 
 class MyStreamListener(tweepy.StreamListener):
