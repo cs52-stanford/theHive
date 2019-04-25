@@ -23,13 +23,14 @@ def main():
 
     ref = db.reference()
     for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
-        print (tweet.created_at, tweet.text)
+        print (tweet.created_at, tweet.text, tweet.user.location)
         csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
         tweet_ref = ref.child('Tweets')
         new_tweet = tweet_ref.push()
         new_tweet.set({
             'Date:': str(tweet.created_at),
             'Tweet': tweet.text,
+            'Location': tweet.user.location,
         })
 
 def read_credentials():
