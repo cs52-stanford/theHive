@@ -3,51 +3,60 @@ import csv
 import tweepy
 from tweepy import OAuthHandler
 import pyrebase
+import copy
 
 import firebase_admin
 from firebase_admin import credentials, db
 
-
-
-
 kRequests = 450 #450 searches per 15/mins limit
 
 def main():
-    creds = read_credentials()
-    auth = OAuthHandler(creds['consumer_key'], creds['consumer_secret'])
-    auth.set_access_token(creds['access_token'], creds['access_token_secret'])
-    api = tweepy.API(auth)
+    credentials_arr = read_credentials() # returns array of dicts, each dict represents one login
+    apis = get_apis(credentials_arr) # returns array of api objects
 
     csvOutput = open('saved-tweets.csv', 'a')
     csvWriter = csv.writer(csvOutput)
 
     ref = db.reference()
-    for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
-        print (tweet.created_at, tweet.text, tweet.user.location)
-        csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
-        tweet_ref = ref.child('Tweets')
-        new_tweet = tweet_ref.push()
-        new_tweet.set({
-            'Date:': str(tweet.created_at),
-            'Tweet': tweet.text,
-            'Location': tweet.user.location,
-        })
+    for api in apis:
+        for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
+            print (tweet.created_at, tweet.text, tweet.user.location)
+            csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+            tweet_ref = ref.child('Tweets')
+            new_tweet = tweet_ref.push()
+            new_tweet.set({
+                'Date:': str(tweet.created_at),
+                'Tweet': tweet.text,
+                'Location': tweet.user.location,
+            })
+
+def get_apis(credentials):
+    apis = []
+    for dict in credentials:
+        auth = OAuthHandler(dict['consumer_key'], dict['consumer_secret'])
+        auth.set_access_token(dict['access_token'], dict['access_token_secret'])
+        apis.append(tweepy.API(auth))
+    return apis
 
 def read_credentials():
     # Twitter API setup
-    keyFile = open('credentials.txt', 'r')
-    creds = {}
-    creds['consumer_key'] = keyFile.readline().rstrip()
-    creds['consumer_secret'] = keyFile.readline().rstrip()
-    creds['access_token'] = keyFile.readline().rstrip()
-    creds['access_token_secret'] = keyFile.readline().rstrip()
+    keyFile = open('/Users/jkhunt/github/theHive/credentials.txt', 'r')
+    credentials_arr = []
+    titles = ['consumer_key', 'consumer_secret', 'access_token', 'access_token_secret']
+    creds_dict = {}
+    for index, line in enumerate(keyFile):
+        creds_dict[titles[index % 4]] = line.rstrip()
+        if index % 4 == 3:
+            credentials_arr.append(copy.copy(creds_dict))
+            creds_dict.clear()
+    keyFile.close()
 
-    # firebase setup
-    cred = credentials.Certificate("firebase-cred.json")
+    # Firebase setup
+    cred = credentials.Certificate("/Users/jkhunt/github/theHive/firebase-cred.json")
     firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://hive-258ce.firebaseio.com/'
     })
-    return creds
+    return credentials_arr
 
 class MyStreamListener(tweepy.StreamListener):
 
