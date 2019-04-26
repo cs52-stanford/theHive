@@ -19,16 +19,20 @@ def main():
 
     ref = db.reference()
     for api in apis:
-        for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
-            print (tweet.created_at, tweet.text, tweet.user.location)
-            csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
-            tweet_ref = ref.child('Tweets')
-            new_tweet = tweet_ref.push()
-            new_tweet.set({
-                'Date:': str(tweet.created_at),
-                'Tweet': tweet.text,
-                'Location': tweet.user.location,
-            })
+        # for tweet in tweepy.Cursor(api.search, q="#refugee", count=10, lang="en", geocode="39.8,-95.583068847656,2500km").items():
+        #     # print (tweet.created_at, tweet.text, tweet.user.location)
+        #     csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+        #     tweet_ref = ref.child('Tweets')
+        #     new_tweet = tweet_ref.push()
+        #     new_tweet.set({
+        #         'Date': str(tweet.created_at),
+        #         'Tweet': tweet.text,
+        #         'Location': tweet.user.location,
+        #     })
+        for user in tweepy.Cursor(api.search_users, q='#refugee').items():
+            print(user.screen_name, user.followers_count)
+
+
 
 def get_apis(credentials):
     apis = []
@@ -40,7 +44,7 @@ def get_apis(credentials):
 
 def read_credentials():
     # Twitter API setup
-    keyFile = open('/Users/jkhunt/github/theHive/credentials.txt', 'r')
+    keyFile = open('credentials.txt', 'r')
     credentials_arr = []
     titles = ['consumer_key', 'consumer_secret', 'access_token', 'access_token_secret']
     creds_dict = {}
@@ -52,7 +56,7 @@ def read_credentials():
     keyFile.close()
 
     # Firebase setup
-    cred = credentials.Certificate("/Users/jkhunt/github/theHive/firebase-cred.json")
+    cred = credentials.Certificate("firebase-cred.json")
     firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://hive-258ce.firebaseio.com/'
     })
