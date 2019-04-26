@@ -1,68 +1,68 @@
 
-const profilesList = [
+const data = [
   {
-    city: New York,
-    state: New York,
+    city: 'New York City',
+    state: 'New York',
     longitude: 40.7127837,
     latitude: -74.0059413,
-    keywords: "angry", "human rights", "separation",
+    keywords: ["angry", "human rights", "separation"],
     positive: false,
-    hashtags: "#RefugeesWelcome", "@HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "@HelpRefugees"],
     influencers: "@Redhourben",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
-    city: Los Angeles,
-    state: California,
+    city: 'Los Angeles',
+    state: 'California',
     longitude: 34.0522342,
     latitude: -118.2436849,
-    keywords: "hopeful", "welcome", "Yemen",
+    keywords: ["hopeful", "welcome", "Yemen"],
     positive: false,
-    hashtags: "#RefugeesWelcome", "#HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "#HelpRefugees"],
     influencers: "@TheRealAlekWek",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
-    city: Chicago,
-    state: Illinois,
+    city: 'Chicago',
+    state: 'Illinois',
     longitude: 41.8781136,
     latitude: -87.6297982,
-    keywords: "grateful", "Syria", "Somali",
+    keywords: ["grateful", "Syria", "Somali"],
     positive: true,
-    hashtags: "#RefugeesWelcome", "#HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "#HelpRefugees"],
     influencers: "@KristinDavis",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
-    city: Houston,
-    state: Texas,
+    city: 'Houston',
+    state: 'Texas',
     longitude: 29.7604267,
     latitude:  -95.3698028,
-    keywords: "horrible", "Rohingya", "injustice"
+    keywords: ["horrible", "Rohingya", "injustice"],
     positive: true,
-    hashtags: "#RefugeesWelcome", "#HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "#HelpRefugees"],
     influencers: "@neilhimself",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
-    city: Philadelphia,
-    state: Pennsylvania,
+    city: 'Philadelphia',
+    state: 'Pennsylvania',
     longitude: 39.9525839,
     latitude:  -75.1652215,
-    keywords: "horrible", "Rohingya", "injustice"
+    keywords: ["horrible", "Rohingya", "injustice"],
     positive: false,
-    hashtags: "#RefugeesWelcome", "#HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "#HelpRefugees"],
     influencers: "@BH_officiel",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
   {
-    city: Phoenix,
-    state: Arizona,
+    city: 'Phoenix',
+    state: 'Arizona',
     longitude: 33.4483771,
     latitude:  -112.0740373,
-    keywords: "Manila", "displacement", "shelter"
+    keywords: ["Manila", "displacement", "shelter"],
     positive: false,
-    hashtags: "#RefugeesWelcome", "#HelpRefugees",
+    hashtags: ["#RefugeesWelcome", "#HelpRefugees"],
     influencers: "@atomaraullo",
     topnews: "https://www.aljazeera.com/indepth/features/refugees-italian-hosts-190420213837775.html)",
   },
@@ -81,10 +81,10 @@ const profiles = {
   'sanjeet_food_truck': profilesList[7],
 
   random: () => {
-    return profilesList[Math.floor(Math.random() * 8)]
+    return data[Math.floor(Math.random() * 8)]
   }
 
 }
 
 export default profiles
-export {profilesList};
+export {data};
