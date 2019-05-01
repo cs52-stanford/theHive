@@ -1,88 +1,42 @@
-import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-// import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-// import Config from '../../../Config';
-import {data} from './data.js'
+import React, {Component } from 'react';
+import GoogleMap from 'google-map-react';
 
-const mapStyles = {
-  flex: 1,
-};
+import {
+  initialCenter,
+  initialZoom,
+  M_WIDTH,
+  M_HEIGHT,
+} from './numbers'
+import Marker from './marker.js';
+import PropTypes from 'prop-types';
 
-const tableStyle = {
-  flex: 1,
-};
 
-const pageStyle = {
-  // width: '100%',
-  // height: '100%',
-  flexDirection: 'row',
-  flex: 1
-};
-
-export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {}
+class SimpleMap extends Component {
+  static defaultProps = {
+    center: initialCenter,
+    zoom: initialZoom
   };
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-
-  onClose = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
-    }
+  static propTypes = {
+  center: PropTypes.array,
+  zoom: PropTypes.number,
   };
 
   render() {
     return (
-      <div
-        style={pageStyle}
-      >
-        <Map
-          google={this.props.google}
-          zoom={5}
-          style={mapStyles}
-          initialCenter={{
-           lat: 39,
-           lng: -95.7129
-         }}>
-          <Marker
-           onClick={this.onMarkerClick}
-           name={'Kansas City'}
-           shadowColor = 'green'
-           position={{
-            lat: 39.110298,
-            lng: -94.581078
-          }} />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
-        </Map>
-
-        <div
-          style={tableStyle}>
-        </div>
-
+      // Important! Always set the container height explicitly
+      <div style={{ height: '100vh', width: '100%' }}>
+        <GoogleMap
+          apiKey={'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}
+          center={this.props.center}
+          zoom={this.props.zoom}
+          hoverDistance={M_WIDTH / 2}
+        >
+          <Marker lat={initialCenter[0]} lng={initialCenter[1]} text={'1'} /* Kreyser Avrora */ />
+        </GoogleMap>
       </div>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'
-})(MapContainer);
+export default SimpleMap;
