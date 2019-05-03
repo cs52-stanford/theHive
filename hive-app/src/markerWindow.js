@@ -25,26 +25,13 @@ const markerStyle = {
   color: 'white',
   fontSize: 16,
   fontWeight: 'bold',
-  padding: 4,
-  shadowColor: '#ecbf42',
-  shadowOffset: { width: 0, height: 5 },
-  shadowOpacity: 1,
+  padding: 4
 };
 
 const markerStyleHover = {
   ...markerStyle,
   border: '5px solid white',
   color: 'white'
-};
-
-const markerHoverStyle = {
-  color: 'black',
-  width: M_WIDTH * 8,
-  backgroundColor: 'white',
-  padding: 20,
-  marginTop: -75,
-
-
 };
 
 export default class Marker extends Component {
@@ -60,19 +47,11 @@ export default class Marker extends Component {
   render() {
     const style = this.props.$hover ? markerStyleHover : markerStyle;
     return (
-      <a>
       <a href={"http://twitter.com/"+this.props.handle}>
-        <div style={style}>
+       <div style={style}>
           {this.props.text}
-        </div>
-      </a>
-
-      <div style={markerHoverStyle} className="hint__content">
-        @{this.props.handle}{"\n"}
-
-        Refugee tweets: 50%
-      </div>
-      </a>
+       </div>
+     </a>
     );
   }
 }
