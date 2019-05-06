@@ -1,4 +1,4 @@
-import React, {Component, Text} from 'react';
+import React, {Component } from 'react';
 import GoogleMap from 'google-map-react';
 import {
   initialCenter,
@@ -41,7 +41,8 @@ class SimpleMap extends Component {
                 lat={marker.lat}
                 lng={marker.lng}
                 text={index}
-                handle={marker.handle}>
+                handle={marker.handle}
+                influence={marker.influence}>
               </Marker>
             // </a>
           ))}

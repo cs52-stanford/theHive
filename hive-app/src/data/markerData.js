@@ -5,6 +5,7 @@ const markerList = [
     city: 'New York City',
     state: 'NY',
     handle: 'Refugees',
+    influence: 4,
   },
 
   {
@@ -13,6 +14,8 @@ const markerList = [
     city: 'Kansas City',
     state: 'MO',
     handle: 'DRC_dk',
+    influence: 3,
+
   },
 
   {
@@ -21,6 +24,7 @@ const markerList = [
     city: 'Cerritos',
     state: 'CA',
     handle: 'ecre',
+    influence: 2,
   },
 
   {
@@ -29,6 +33,8 @@ const markerList = [
     city: 'Ann Arbor',
     state: 'MI',
     handle: 'JesuitRefugee',
+    influence: 1,
+
   },
 
   {
@@ -37,6 +43,8 @@ const markerList = [
     city: 'San Francisco',
     state: 'CA',
     handle: 'wrcommission',
+    influence: 3,
+
   },
 
   {
@@ -45,6 +53,8 @@ const markerList = [
     city: 'Houston',
     state: 'TX',
     handle: 'AboutRefugees',
+    influence: 2,
+
   },
 ]
 

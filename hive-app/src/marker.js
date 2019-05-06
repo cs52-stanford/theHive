@@ -4,12 +4,9 @@ import {
   M_WIDTH,
   M_HEIGHT,
 } from './data/numbers'
-import {markerList} from './data/markerData'
-
+// import {markerList} from './data/markerData'
 
 const markerStyle = {
-  // initially any map object has left top corner at lat lng coordinates
-  // it's on you to set object origin to 0,0 coordinates
   position: 'absolute',
   width: M_WIDTH,
   height: M_HEIGHT,
@@ -26,9 +23,6 @@ const markerStyle = {
   fontSize: 16,
   fontWeight: 'bold',
   padding: 4,
-  shadowColor: '#ecbf42',
-  shadowOffset: { width: 0, height: 5 },
-  shadowOpacity: 1,
 };
 
 const markerStyleHover = {
@@ -37,42 +31,72 @@ const markerStyleHover = {
   color: 'white'
 };
 
-const markerHoverStyle = {
+const popupHoverStyle = {
   color: 'black',
-  width: M_WIDTH * 8,
   backgroundColor: 'white',
-  padding: 20,
-  marginTop: -75,
-
-
+  padding: 15,
+  marginTop: -100,
+  // left: 0,
+  // top: 0,
 };
 
 export default class Marker extends Component {
   static propTypes = {
     text: PropTypes.string,
     handle: PropTypes.string,
+    influence: PropTypes.number,
   };
 
   static defaultProps = {
     handle: 'refugees',
   };
 
+
   render() {
+    // const changeBorderColor = 'white';
+    // if (this.props.influence === 1) {
+    //   changeBorderColor = 'red';
+    // } else if (this.props.influence === 2) {
+    //   changeBorderColor = 'blue';
+    // } else if (this.props.influence === 3) {
+    //   changeBorderColor = 'green';
+    // } else if (this.props.influence === 4) {
+    //   changeBorderColor = 'pink';
+    // }
+
     const style = this.props.$hover ? markerStyleHover : markerStyle;
     return (
-      <a>
-      <a href={"http://twitter.com/"+this.props.handle}>
-        <div style={style}>
-          {this.props.text}
+      <div style={{
+        display: 'flex',
+        backgroundColor: 'green',
+        width: M_WIDTH * 8,
+      }}>
+        <a href={"http://twitter.com/"+this.props.handle} style={{
+        }}>
+          <div style={style}>
+            {this.props.text}
+          </div>
+        </a>
+        <a href={"http://twitter.com/"+this.props.handle} style={{
+        }}>
+          <div style={style}>
+            {this.props.text}
+          </div>
+        </a>
+
+        <div style={popupHoverStyle} className="hint__content">
+          <div>
+            @{this.props.handle}
+          </div>
+          <div>
+            Refugee tweets: 50%
+          </div>
+          <div>
+            Sample tweets
+          </div>
         </div>
-      </a>
 
-      <div style={markerHoverStyle} className="hint__content">
-        @{this.props.handle}{"\n"}
-
-        Refugee tweets: 50%
       </div>
-      </a>
     );
   }
 }

@@ -52,6 +52,11 @@ export default class Marker extends Component {
           {this.props.text}
        </div>
      </a>
+     <div style={popupHoverStyle} className="hint__content">
+       @{this.props.handle}{"\n"}
+
+       Refugee tweets: 50%
+     </div>
     );
   }
 }
