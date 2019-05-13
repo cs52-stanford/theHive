@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import GoogleMap from 'google-map-react';
+import controllable from 'react-controllables';
+
 import {
   initialCenter,
   initialZoom,
@@ -48,10 +50,16 @@ const apiIsLoaded = (map, maps, markerList) => {
   bindResizeListener(map, maps, bounds);
 };
 
+@controllable(['center', 'zoom', 'hoverKey', 'clickKey'])
+
 class SimpleMap extends Component {
   static defaultProps = {
     center: initialCenter,
     zoom: initialZoom
+    //   greatPlaces: [
+    //     {id: 'A', lat: 59.955413, lng: 30.337844},
+    //     {id: 'B', lat: 59.724, lng: 30.080}
+    //   ]
   };
 
   static propTypes = {
@@ -90,7 +98,34 @@ class SimpleMap extends Component {
     }
   }
 
+    //should we define shouldPureComponentUpdate????????????
+    // shouldComponentUpdate = shouldPureComponentUpdate;
+
+
+    constructor(props) {
+      super(props);
+    }
+
+    _onBoundsChange = (center, zoom /* , bounds, marginBounds */) => {
+      this.props.onCenterChange(center);
+      this.props.onZoomChange(zoom);
+    }
+
+    _onChildClick = (key, childProps) => {
+      this.props.onCenterChange([childProps.lat, childProps.lng]);
+    }
+
+    _onChildMouseEnter = (key /*, childProps */) => {
+      this.props.onHoverKeyChange(key);
+    }
+
+    _onChildMouseLeave = (/* key, childProps */) => {
+      this.props.onHoverKeyChange(null);
+    }
+
   render() {
+    console.log("woot");
+
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
@@ -118,10 +153,13 @@ class SimpleMap extends Component {
               </Marker>
             // </a>
           ))}
+
         </GoogleMap>
       </div>
     );
   }
 }
+
+
 
 export default SimpleMap;

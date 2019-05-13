@@ -49,12 +49,19 @@ export default class Marker extends Component {
     text: PropTypes.string,
     handle: PropTypes.string,
     influence: PropTypes.number,
+    hover: PropTypes.bool,
   };
 
   static defaultProps = {
     handle: 'refugees',
   };
 
+// should we define shouldPureComponentUpdate???????
+  // shouldComponentUpdate = shouldPureComponentUpdate;
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     // const changeBorderColor = 'white';
@@ -68,7 +75,9 @@ export default class Marker extends Component {
     //   changeBorderColor = 'pink';
     // }
 
-    const style = this.props.$hover ? markerStyleHover : markerStyle;
+
+
+    const style = this.props.hover ? markerStyleHover : markerStyle;
     return (
       <div style={{
         display: 'flex',
@@ -99,7 +108,10 @@ export default class Marker extends Component {
             Sample tweets
           </div>
         </div>
-
+        <div>{this.props.text}</div>
+        <div style={{width: 80}} className="hint__content">
+        Сlick me
+        </div>
       </div>
     );
   }
