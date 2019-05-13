@@ -50,15 +50,35 @@ def main():
     # ref = db.reference()
     # makeQueries(apis, ref)
     retrieveData()
-    print(process.memory_info().rss)
+    # print(process.memory_info().rss)
 
 def retrieveData():
     ref = db.reference('Tweet-More')
     # tweets = ast.literal_eval(ref.get())
     # array = [np.array(tweet) for tweet in tweets["tweet"]]
     result = ref.get()
-    arr = np.array(list(result.items()))
-    print(arr)
+    data = pd.DataFrame(columns=['Date', 'Tweet', 'Retweets', 'Replies', 'Liked', 'User', 'Handle', 'Followers', 'Total Tweets by user'])
+    for i,key in enumerate(result.keys()):
+        data.loc[i] = (result[key]['Date'] if 'Date' in result[key] else np.NaN,
+        result[key]['Tweet'] if 'Tweet' in result[key] else np.NaN,
+        result[key]['Retweets'] if 'Retweets' in result[key] else np.NaN,
+        result[key]['Replies'] if 'Replies' in result[key] else np.NaN,
+        result[key]['Liked'] if 'Liked' in result[key] else np.NaN,
+        result[key]['User'] if 'User' in result[key] else np.NaN,
+        result[key]['Handle'] if 'Handle' in result[key] else np.NaN,
+        result[key]['Followers'] if 'Followers' in result[key] else np.NaN,
+        result[key]['Total Tweets by user'] if 'Total Tweets by user' in result[key] else np.NaN)
+    print(data[data['Followers'] == data['Followers'].max()])
+
+
+    #     try:
+    #         data.append((key
+    #                     ,result[key]['Tweet'] if 'Tweet' in result[key] else 'NaN'))
+    #
+    #     # if no entry, skip
+    #     except:
+    #         pass
+    # # arr = pd.DataFrame.from_dict(result)
 
 
 
