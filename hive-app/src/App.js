@@ -99,7 +99,7 @@ class SimpleMap extends Component {
               <Marker
                 key={index}
                 index={index}
-                activeMarkerIndex={this.activeMarkerIndex}
+                activeMarkerIndex={this.state.activeMarkerIndex}
                 lat={marker.lat}
                 lng={marker.lng}
                 text={index.toString()}
