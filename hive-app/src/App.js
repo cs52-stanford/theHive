@@ -1,7 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import GoogleMap from 'google-map-react';
-import controllable from 'react-controllables';
-
 import {
   initialCenter,
   initialZoom,
@@ -12,10 +10,7 @@ import Marker from './marker.js';
 import PropTypes from 'prop-types';
 
 // consts
-import controllable from 'react-controllables';
 import {markerList} from './data/markerData';
-
-SimpleMap = controllable(['center', 'zoom', 'hoverKey', 'clickKey']);
 
 // Return map bounds based on list of places
 const getMapBounds = (map, maps, markerList) => {
@@ -42,15 +37,13 @@ const bindResizeListener = (map, maps, bounds) => {
 // Fit map to its bounds after the api is loaded
 const apiIsLoaded = (map, maps, markerList) => {
   // Get bounds by our places
-  this.setState({maps: maps});
   const bounds = getMapBounds(map, maps, markerList);
   // Fit map to bounds
   // map.fitBounds(bounds);
+
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
 };
-
-@controllable(['center', 'zoom', 'hoverKey', 'clickKey'])
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -74,19 +67,10 @@ class SimpleMap extends Component {
   };
 
   _onChildClick = (map, marker, maps) => {
-    // map.fitBounds([childProps.lat, childProps.lng]);
+    map.fitBounds([marker.lat, marker.lng]);
     console.log(marker);
-    this.state.maps.panTo({lat: marker.lat, lng: marker.lng});
-  }
-
-  // _onChildMouseEnter = (key /*, childProps */) => {
-  //   this.props.onHoverKeyChange(key);
-  // }
-
-  // _onChildMouseLeave = (/* key, childProps */) => {
-  //   this.props.onHoverKeyChange(null);
-  // }
-
+    // this.state.maps.panTo({lat: marker.lat, lng: marker.lng});
+}
   constructor(props) {
     super(props);
     this.state = {
@@ -97,31 +81,6 @@ class SimpleMap extends Component {
       maps: null,
     }
   }
-
-    //should we define shouldPureComponentUpdate????????????
-    // shouldComponentUpdate = shouldPureComponentUpdate;
-
-
-    constructor(props) {
-      super(props);
-    }
-
-    _onBoundsChange = (center, zoom /* , bounds, marginBounds */) => {
-      this.props.onCenterChange(center);
-      this.props.onZoomChange(zoom);
-    }
-
-    _onChildClick = (key, childProps) => {
-      this.props.onCenterChange([childProps.lat, childProps.lng]);
-    }
-
-    _onChildMouseEnter = (key /*, childProps */) => {
-      this.props.onHoverKeyChange(key);
-    }
-
-    _onChildMouseLeave = (/* key, childProps */) => {
-      this.props.onHoverKeyChange(null);
-    }
 
   render() {
     console.log("woot");

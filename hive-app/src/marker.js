@@ -91,27 +91,6 @@ export default class Marker extends Component {
             {this.props.text}
           </div>
         </a>
-
-        <div style={{width: 80}} className="hint__content">
-          Сlick me
-        </div>
-
-
-        <div style={popupHoverStyle}>
-          <div>
-            @{this.props.handle}
-          </div>
-          <div>
-            Refugee tweets: 50%
-          </div>
-          <div>
-            Sample tweets
-          </div>
-        </div>
-        <div>{this.props.text}</div>
-        <div style={{width: 80}} className="hint__content">
-        Сlick me
-        </div>
       </div>
     );
   }
