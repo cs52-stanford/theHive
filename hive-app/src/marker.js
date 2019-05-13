@@ -28,7 +28,11 @@ const markerStyle = {
 const markerStyleHover = {
   ...markerStyle,
   border: '5px solid white',
-  color: 'white'
+  color: 'white',
+  width: M_WIDTH*1.5,
+  height: M_HEIGHT*1.5,
+  left: -M_WIDTH*1.5/ 2,
+  top: -M_HEIGHT*1.5 / 2,
 };
 
 const popupHoverStyle = {
@@ -71,20 +75,20 @@ export default class Marker extends Component {
         backgroundColor: 'green',
         width: M_WIDTH * 8,
       }}>
-        <a href={"http://twitter.com/"+this.props.handle} style={{
-        }}>
-          <div style={style}>
-            {this.props.text}
-          </div>
-        </a>
-        <a href={"http://twitter.com/"+this.props.handle} style={{
-        }}>
+        <a
+        // <a href={"http://twitter.com/"+this.props.handle}
+        >
           <div style={style}>
             {this.props.text}
           </div>
         </a>
 
-        <div style={popupHoverStyle} className="hint__content">
+        <div style={{width: 80}} className="hint__content">
+          Сlick me
+        </div>
+
+
+        <div style={popupHoverStyle}>
           <div>
             @{this.props.handle}
           </div>

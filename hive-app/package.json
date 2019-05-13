@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
     "prop-types": "^15.7.2",
