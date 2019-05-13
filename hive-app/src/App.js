@@ -47,17 +47,13 @@ const apiIsLoaded = (map, maps, markerList) => {
 
 class SimpleMap extends Component {
   static defaultProps = {
-    center: initialCenter,
-    zoom: initialZoom
-    //   greatPlaces: [
-    //     {id: 'A', lat: 59.955413, lng: 30.337844},
-    //     {id: 'B', lat: 59.724, lng: 30.080}
-    //   ]
+    // center: initialCenter,
+    // zoom: initialZoom
   };
 
   static propTypes = {
-    center: PropTypes.array,
-    zoom: PropTypes.number,
+    // center: PropTypes.array,
+    // zoom: PropTypes.number,
 
     hoverKey: PropTypes.string, // @controllable
     clickKey: PropTypes.string, // @controllable
@@ -67,14 +63,16 @@ class SimpleMap extends Component {
   };
 
   _onChildClick = (map, marker, maps) => {
-    map.fitBounds([marker.lat, marker.lng]);
-    console.log(marker);
-    // this.state.maps.panTo({lat: marker.lat, lng: marker.lng});
+    this.setState({
+      center: [marker.lat, marker.lng],
+      activeMarkerIndex: marker.index, // key can't be passed as a prop
+    });
+
 }
   constructor(props) {
     super(props);
     this.state = {
-      activeChild: null,
+      activeMarkerIndex: null,
       center: initialCenter,
       zoom: initialZoom,
       places: null,
@@ -83,15 +81,13 @@ class SimpleMap extends Component {
   }
 
   render() {
-    console.log("woot");
-
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMap
           bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
-          center={this.props.center}
-          zoom={this.props.zoom}
+          center={this.state.center}
+          zoom={this.state.zoom}
           hoverDistance={M_WIDTH}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, markerList)}
@@ -102,6 +98,7 @@ class SimpleMap extends Component {
           {markerList.map((marker, index) => (
               <Marker
                 key={index}
+                index={index}
                 lat={marker.lat}
                 lng={marker.lng}
                 text={index.toString()}
