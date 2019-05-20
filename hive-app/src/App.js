@@ -70,7 +70,7 @@ class SimpleMap extends Component {
   _onChildClick = (map, marker, maps) => {
     this.setState({
       center: [marker.lat, marker.lng],
-      activeMarkerIndex: marker.index, // key can't be passed as a prop
+      // activeMarkerIndex: marker.index, // key can't be passed as a prop
       activeMarker: marker,
     });
 
@@ -78,7 +78,7 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeMarkerIndex: null,
+      // activeMarkerIndex: null,
       activeMarker: 0,
       center: initialCenter,
       zoom: initialZoom,
@@ -111,7 +111,7 @@ class SimpleMap extends Component {
                 <Marker
                   key={index}
                   index={index}
-                  activeMarkerIndex={this.state.activeMarkerIndex}
+                  // activeMarkerIndex={this.state.activeMarkerIndex}
                   activeMarker = {this.state.activeMarker}
                   lat={marker.lat}
                   lng={marker.lng}
@@ -124,7 +124,7 @@ class SimpleMap extends Component {
             ))}
           </GoogleMap>
         </div>
-        
+
         <div>
           // add your component here!
           <InfluenceFlag
