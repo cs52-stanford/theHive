@@ -124,7 +124,9 @@ class SimpleMap extends Component {
             ))}
           </GoogleMap>
         </div>
+        
         <div>
+          // add your component here!
           <InfluenceFlag
             influence={this.state.activeMarker.influence}
           >
