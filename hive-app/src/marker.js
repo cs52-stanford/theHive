@@ -20,7 +20,7 @@ const markerStyle = {
   justifyContent:'center',
   alignItems:'center',
   color: 'white',
-  fontSize: 16,
+  fontSize: 14,
   fontWeight: 'bold',
   padding: 4,
 };
@@ -54,7 +54,7 @@ export default class Marker extends Component {
   render() {
 
     var style = this.props.$hover ? markerStyleHover : markerStyle;
-    if (this.props.activeMarkerIndex === this.props.index) {
+    if ((this.props.activeMarker.index === this.props.index)) {
       style = markerStyleHover;
     }
     return (

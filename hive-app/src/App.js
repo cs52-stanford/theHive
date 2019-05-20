@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import GoogleMap from 'google-map-react';
+import SplitterLayout from 'react-splitter-layout';
+import 'react-splitter-layout/lib/index.css';
 import {
   initialCenter,
   initialZoom,
@@ -8,6 +10,9 @@ import {
 } from './data/numbers'
 import Marker from './marker.js';
 import PropTypes from 'prop-types';
+import InfluenceFlag from './influenceFlag.js';
+import './fonts.css'
+
 
 // consts
 import {markerList} from './data/markerData';
@@ -66,6 +71,7 @@ class SimpleMap extends Component {
     this.setState({
       center: [marker.lat, marker.lng],
       activeMarkerIndex: marker.index, // key can't be passed as a prop
+      activeMarker: marker,
     });
 
 }
@@ -73,6 +79,7 @@ class SimpleMap extends Component {
     super(props);
     this.state = {
       activeMarkerIndex: null,
+      activeMarker: 0,
       center: initialCenter,
       zoom: initialZoom,
       places: null,
@@ -83,36 +90,47 @@ class SimpleMap extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMap
-          bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
-          center={this.state.center}
-          zoom={this.state.zoom}
-          hoverDistance={M_WIDTH}
-          yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, markerList)}
-          onChildClick={this._onChildClick}
-          // onChildMouseLeave={this._onChildMouseLeave}
-        >
-
-          {markerList.map((marker, index) => (
-              <Marker
-                key={index}
-                index={index}
-                activeMarkerIndex={this.state.activeMarkerIndex}
-                lat={marker.lat}
-                lng={marker.lng}
-                text={index.toString()}
-                handle={marker.handle}
-                influence={marker.influence}
-                hover={this.props.hoverKey === index}
-                >
-              </Marker>
-            // </a>
-          ))}
-
-        </GoogleMap>
-      </div>
+      // <div style={{ height: '100vh', width: '100%' }}>
+      <SplitterLayout
+      primaryIndex={1}
+      primaryMinSize={25}
+      // restrict table size to 25% only
+      secondaryMinSize={75}
+      percentage={true}>
+        <div style={{ height: '100vh', width: '100%' }}>
+          <GoogleMap
+            bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
+            center={this.state.center}
+            zoom={this.state.zoom}
+            hoverDistance={M_WIDTH}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, markerList)}
+            onChildClick={this._onChildClick}
+          >
+            {markerList.map((marker, index) => (
+                <Marker
+                  key={index}
+                  index={index}
+                  activeMarkerIndex={this.state.activeMarkerIndex}
+                  activeMarker = {this.state.activeMarker}
+                  lat={marker.lat}
+                  lng={marker.lng}
+                  text={(index*100).toString()}
+                  handle={marker.handle}
+                  influence={marker.influence}
+                  hover={this.props.hoverKey === index}
+                  >
+                </Marker>
+            ))}
+          </GoogleMap>
+        </div>
+        <div>
+          <InfluenceFlag
+            influence={this.state.activeMarker.influence}
+          >
+          </InfluenceFlag>
+        </div>
+    </SplitterLayout>
     );
   }
 }
