@@ -10,15 +10,18 @@ import {
 } from './data/numbers'
 import './fonts.css'
 
+const INFLUENCE_FLAG_LENGTH = M_WIDTH * 2;
+
 const starInfluenceStyle = {
   // position: 'absolute',
-  width: M_WIDTH*4,
-  height: M_HEIGHT*1.5,
+  width: INFLUENCE_FLAG_LENGTH*2,
+  height: INFLUENCE_FLAG_LENGTH,
 
   display: 'flex',
   justifyContent:'center',
   alignItems:'center',
-  padding: 4,
+  // padding: 4,
+  
   // color
   backgroundColor: '#ecbf42',
   // font

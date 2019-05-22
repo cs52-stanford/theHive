@@ -11,6 +11,7 @@ import {
 import Marker from './marker.js';
 import PropTypes from 'prop-types';
 import InfluenceFlag from './influenceFlag.js';
+import TableEntry from './TableEntry.js';
 import './fonts.css'
 
 
@@ -125,8 +126,10 @@ class SimpleMap extends Component {
           </GoogleMap>
         </div>
 
+        {/* sidebar */}
         <div>
-          // add your component here!
+          {/* add your component here! */}
+          <TableEntry />
           <InfluenceFlag
             influence={this.state.activeMarker.influence}
           >
