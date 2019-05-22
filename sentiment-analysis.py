@@ -82,7 +82,7 @@ def runQuery(index, api, ref):
         # print (tweet.created_at, tweet.text, tweet.user.location)
         # csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
 
-        tweet_ref = ref.child('Tweet-NoRT')
+        tweet_ref = ref.child('TweetReal')
 
         # ignores retweets
         if (hasattr(tweet, 'retweeted_status')):
@@ -106,15 +106,13 @@ def runQuery(index, api, ref):
             else:
                 tweetLong = None
                 tweetLat = None
-
-            print(tweet.user.location, tweetLong, tweetLat)
         else:
             tweetLong = None
             tweetLat = None
 
 
         text = tweet.full_text
-        
+
         # obtains URL of tweet
         if(re.search("(?P<url>https?://[^\s]+)", text)):
             url = re.search("(?P<url>https?://[^\s]+)", text).group("url")
