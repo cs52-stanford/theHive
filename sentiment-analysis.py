@@ -1,25 +1,11 @@
-import numpy as np
-import pandas as pd
 import csv
-from concurrent.futures import ThreadPoolExecutor
-import threading
 import tweepy
 from tweepy import OAuthHandler
-import json
-import pyrebase
 import copy
-import datetime
 import firebase_admin
 from firebase_admin import credentials, db
 import re
-import os
-import psutil
-import ast
-import numpy as np
 import geocoder
-
-
-
 
 kRequests = 450 #450 searches per 15/mins limit
 queries = ['#refugee', '#immigrants','#withrefugees', 'USA for UNHCR',
@@ -43,8 +29,6 @@ queries = ['#refugee', '#immigrants','#withrefugees', 'USA for UNHCR',
             'Caravan', 'UNHCR', 'UN', 'Refugees', 'ICE', 'deportation',
             'border wall', 'illegal border crossing']
 
-mapAPIKey = ""
-
 def main():
     credentials_arr = read_credentials() # returns array of dicts, each dict represents one login
     apis = get_apis(credentials_arr) # returns array of api objects
@@ -54,10 +38,6 @@ def main():
 
     ref = db.reference()
     makeQueries(apis, ref)
-
-def toJSON(self):
-    return json.dumps(self, default=lambda o: o.__dict__,
-        sort_keys=True, indent=4)
 
 def limit_handled(cursor, index):
     while True:
