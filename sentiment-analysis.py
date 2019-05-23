@@ -46,14 +46,8 @@ queries = ['#refugee', '#immigrants','#withrefugees', 'USA for UNHCR',
 mapAPIKey = ""
 
 def main():
-    process = psutil.Process(os.getpid())
     credentials_arr = read_credentials() # returns array of dicts, each dict represents one login
     apis = get_apis(credentials_arr) # returns array of api objects
-
-    mapFile = open('mapAPI.txt', 'r')
-    for line in mapFile:
-        mapAPIKey = line.rstrip()
-    mapFile.close()
 
     csvOutput = open('saved-tweets.csv', 'a')
     csvWriter = csv.writer(csvOutput)
