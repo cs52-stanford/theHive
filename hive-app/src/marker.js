@@ -33,6 +33,7 @@ const markerStyleHover = {
   height: M_HEIGHT*2,
   left: -M_WIDTH*2/ 2,
   top: -M_HEIGHT*2 / 2,
+  zIndex: 1,
 };
 
 export default class Marker extends Component {

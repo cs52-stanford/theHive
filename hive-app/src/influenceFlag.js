@@ -16,14 +16,16 @@ const starInfluenceStyle = {
   // position: 'absolute',
   width: INFLUENCE_FLAG_LENGTH*2,
   height: INFLUENCE_FLAG_LENGTH,
+  'min-width': INFLUENCE_FLAG_LENGTH*2,
 
   display: 'flex',
   justifyContent:'center',
   alignItems:'center',
-  // padding: 4,
-  
+  paddingLeft: 4,
+
   // color
   backgroundColor: '#ecbf42',
+  color: 'black',
   // font
   color: 'black',
   fontSize: 16,
@@ -35,19 +37,16 @@ const starInfluenceStyle = {
 const microInfluenceStyle = {
   ...starInfluenceStyle,
   backgroundColor: MICRO_COLOR,
-  color: 'black',
 }
 
 const midInfluenceStyle = {
   ...starInfluenceStyle,
   backgroundColor: MID_COLOR,
-  color: 'black',
 }
 
 const macroInfluenceStyle = {
   ...starInfluenceStyle,
   backgroundColor: MACRO_COLOR,
-  color: 'black',
 }
 
 

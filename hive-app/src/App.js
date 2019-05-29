@@ -12,6 +12,7 @@ import Marker from './marker.js';
 import PropTypes from 'prop-types';
 import InfluenceFlag from './influenceFlag.js';
 import TableEntry from './TableEntry.js';
+import { SearchBox } from 'react-instantsearch-dom';
 import './fonts.css'
 
 
@@ -94,10 +95,9 @@ class SimpleMap extends Component {
       // <div style={{ height: '100vh', width: '100%' }}>
       <SplitterLayout
       primaryIndex={1}
-      primaryMinSize={25}
+      primaryMinSize={window.innerWidth*.25}
       // restrict table size to 25% only
-      secondaryMinSize={75}
-      percentage={true}>
+      secondaryMinSize={window.innerWidth*.75}>
         <div style={{ height: '100vh', width: '100%' }}>
           <GoogleMap
             bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
@@ -129,11 +129,15 @@ class SimpleMap extends Component {
         {/* sidebar */}
         <div>
           {/* add your component here! */}
-          <TableEntry />
-          <InfluenceFlag
-            influence={this.state.activeMarker.influence}
-          >
-          </InfluenceFlag>
+          {markerList.map((marker, index) => (
+              <TableEntry
+                key={index}
+                index={index}
+                activeMarker = {this.state.activeMarker}
+                marker={marker}
+                >
+              </TableEntry>
+          ))}
         </div>
     </SplitterLayout>
     );

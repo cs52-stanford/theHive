@@ -61,6 +61,17 @@ const markerList = [
     influence: 2,
 
   },
+
+  {
+    index: 6,
+    lat: 41.8781,
+    lng: -87.6298,
+    city: 'Chicago',
+    state: 'IL',
+    handle: 'nowthisnews',
+    influence: 4,
+
+  },
 ]
 
 export {markerList};

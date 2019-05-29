@@ -10,9 +10,11 @@
     "react": "^16.8.6",
     "react-controllables": "^0.6.0",
     "react-dom": "^16.8.6",
+    "react-instantsearch-dom": "^5.6.0",
     "react-scripts": "2.1.8",
     "react-split-pane": "^0.1.87",
-    "react-splitter-layout": "^4.0.0"
+    "react-splitter-layout": "^4.0.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
