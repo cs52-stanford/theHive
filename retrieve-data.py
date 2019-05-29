@@ -18,19 +18,25 @@ import ast
 import numpy as np
 
 def main():
-    credentials_arr = read_credentials() # returns array of dicts, each dict represents one login
-    apis = get_apis(credentials_arr) # returns array of api objects
+    cred = credentials.Certificate("firebase-cred.json")
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://hive-258ce.firebaseio.com/'
+    })
 
     ref = db.reference()
     retrieveData()
 
 def retrieveData():
-    ref = db.reference('Tweet-More')
+    ref = db.reference('Tweets-Real')
     result = ref.get()
-    data = pd.DataFrame(columns=['Date', 'Tweet', 'Retweets', 'Replies', 'Liked', 'User', 'Handle', 'Followers', 'Total Tweets by user'])
+    data = pd.DataFrame(columns=['Date', 'Tweet','Tweet latitude', 'Tweet longitude', 'User','User location', 'Retweets', 'Replies', 'Liked', 'User', 'Handle', 'Followers', 'Total Tweets by user'])
     for i,key in enumerate(result.keys()):
         data.loc[i] = (result[key]['Date'] if 'Date' in result[key] else np.NaN,
         result[key]['Tweet'] if 'Tweet' in result[key] else np.NaN,
+        result[key]['Tweet latitude'] if 'Tweet latitude' in result[key] else np.NaN,
+        result[key]['Tweet longitude'] if 'Tweet longitude' in result[key] else np.NaN,
+        result[key]['User'] if 'User' in result[key] else np.NaN,
+        result[key]['User location'] if 'User location' in result[key] else np.NaN,
         result[key]['Retweets'] if 'Retweets' in result[key] else np.NaN,
         result[key]['Replies'] if 'Replies' in result[key] else np.NaN,
         result[key]['Liked'] if 'Liked' in result[key] else np.NaN,
