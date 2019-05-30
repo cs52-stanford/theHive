@@ -21,13 +21,13 @@ Our team has had extensive conversations with the staff at Hive, including their
 ![](sentimentdetail.gif)
 
 ## To use our app
-npm install --save prop-types
-npm install --save google-map-react
-npm install --save react-controllables
-npm install @babel/plugin-proposal-decorators
-npm install --save react-splitter-layout
-npm install --save styled-components
-npm install --save react-instantsearch-dom
+- npm install --save prop-types
+- npm install --save google-map-react
+- npm install --save react-controllables
+- npm install @babel/plugin-proposal-decorators
+- npm install --save react-splitter-layout
+- npm install --save styled-components
+- npm install --save react-instantsearch-dom
 
 
 # Who We Are
