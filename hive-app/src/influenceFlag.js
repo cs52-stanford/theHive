@@ -26,6 +26,7 @@ const starInfluenceStyle = {
   // color
   backgroundColor: '#ecbf42',
   color: 'black',
+  
   // font
   color: 'black',
   fontSize: 16,
