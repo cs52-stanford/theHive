@@ -14,6 +14,8 @@ import InfluenceFlag from './influenceFlag.js';
 import TableEntry from './TableEntry.js';
 import { SearchBox } from 'react-instantsearch-dom';
 import './fonts.css'
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 
 // consts
@@ -128,8 +130,13 @@ class SimpleMap extends Component {
 
         {/* sidebar */}
         <div>
-          {/* add your component here! */}
-          {markerList.map((marker, index) => (
+        <TwitterTimelineEmbed
+          sourceType="profile"
+          screenName="JesuitRefugee"
+          options={{height: 400}}
+          activeMarker = {this.state.activeMarker}
+        />
+        {markerList.map((marker, index) => (
               <TableEntry
                 key={index}
                 index={index}

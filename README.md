@@ -28,6 +28,7 @@ npm install @babel/plugin-proposal-decorators
 npm install --save react-splitter-layout
 npm install --save styled-components
 npm install --save react-instantsearch-dom
+npm install --save react-twitter-embed
 
 
 # Who We Are
