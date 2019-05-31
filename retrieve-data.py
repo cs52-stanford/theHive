@@ -1,21 +1,12 @@
 import numpy as np
 import pandas as pd
-import csv
-from concurrent.futures import ThreadPoolExecutor
-import threading
-import tweepy
-from tweepy import OAuthHandler
 import json
-import pyrebase
 import copy
 import datetime
 import firebase_admin
+import math
 from firebase_admin import credentials, db
-import re
-import os
-import psutil
-import ast
-import numpy as np
+
 
 def main():
     cred = credentials.Certificate("firebase-cred.json")
@@ -23,7 +14,6 @@ def main():
         'databaseURL': 'https://hive-258ce.firebaseio.com/'
     })
 
-    ref = db.reference()
     retrieveData()
 
 def retrieveData():
@@ -44,7 +34,7 @@ def retrieveData():
         result[key]['Followers'] if 'Followers' in result[key] else np.NaN,
         result[key]['Total Tweets by user'] if 'Total Tweets by user' in result[key] else np.NaN)
     data.fillna(0)
-    data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * data['Total Tweets by user'] * (data['Liked']+1)) / 10**9
+    data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * math.log(data['Total Tweets by user'] + 1e-10) * (data['Liked']+1)) / 10**9
     influencers = data.loc[data['Influencer-Score'] >= 1]
 
     influencer_ref = db.reference('Influencers/')
