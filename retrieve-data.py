@@ -43,9 +43,10 @@ def retrieveData():
     city_ref = db.reference('City/')
     for index,row in influencers.iterrows():
         existingChild = influencer_ref.child(row['Handle']).get()
+        existingChild_ref = influencer_ref.child(row['Handle'])
         if(existingChild):
             if(existingChild['Influencer-Score'] < row['Influencer-Score']):
-                existingChild.update({
+                existingChild_ref.update({
                     'User': row['User'],
                     'User location': row['User location'],
                     'Handle': row['Handle'],
