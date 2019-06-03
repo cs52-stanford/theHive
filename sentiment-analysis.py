@@ -75,8 +75,8 @@ def runQuery(index, api, ref):
             # converts user location from string to coordinates
             coords = geocoder.arcgis(tweet.user.location)
             if(coords != None):
-                tweetLong = coords.latlng[0]
-                tweetLat = coords.latlng[1]
+                tweetLat = coords.latlng[0]
+                tweetLong = coords.latlng[1]
             else:
                 tweetLong = None
                 tweetLat = None
