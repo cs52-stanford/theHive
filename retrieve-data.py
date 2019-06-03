@@ -10,7 +10,6 @@ import geocoder
 import re
 
 
-
 def main():
     cred = credentials.Certificate("firebase-cred.json")
     firebase_admin.initialize_app(cred, {
