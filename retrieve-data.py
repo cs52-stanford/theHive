@@ -6,6 +6,9 @@ import datetime
 import firebase_admin
 import math
 from firebase_admin import credentials, db
+import geocoder
+import re
+
 
 
 def main():
@@ -17,7 +20,7 @@ def main():
     retrieveData()
 
 def retrieveData():
-    ref = db.reference('/Tweets-Folder/' + str(datetime.date.today()) + '/')
+    ref = db.reference('/Tweets-Folder/' + str(datetime.date.today())+ '/')
     result = ref.get()
     data = pd.DataFrame(columns=['Date', 'Tweet','Tweet latitude', 'Tweet longitude', 'User','User location', 'Retweets', 'Replies', 'Liked', 'Handle', 'Followers', 'Total Tweets by user'])
     for i,key in enumerate(result.keys()):
@@ -34,12 +37,13 @@ def retrieveData():
         result[key]['Followers'] if 'Followers' in result[key] else np.NaN,
         result[key]['Total Tweets by user'] if 'Total Tweets by user' in result[key] else np.NaN)
     data.fillna(0)
-    data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * math.log(data['Total Tweets by user'] + 1e-10) * (data['Liked']+1)) / 10**9
+    data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * (np.log(data['Total Tweets by user'].astype('float'))/np.log(1.5)) * (data['Liked']+1)) / 10**9
     influencers = data.loc[data['Influencer-Score'] >= 1]
 
     influencer_ref = db.reference('Influencers/')
+    city_ref = db.reference('City/')
     for index,row in influencers.iterrows():
-        existingChild = ref.child(row['Handle']).get()
+        existingChild = influencer_ref.child(row['Handle']).get()
         if(existingChild):
             if(existingChild['Influencer-Score'] < row['Influencer-Score']):
                 existingChild.update({
@@ -66,6 +70,51 @@ def retrieveData():
                 'Tweet': row['Tweet'],
                 'Influencer-Score': row['Influencer-Score'],
             })
+        try:
+            g = geocoder.yandex(row['Tweet latitude'], [row['Tweet longitude']], method='reverse').json
+        except:
+            g = None
+
+        if(g):
+            cityName = g['raw']['metaDataProperty']['GeocoderMetaData']['text']
+            cityName = re.sub('[.]', '', cityName)
+            cityName = cityName.split(',')
+            cityName.reverse()
+            cityName = ",".join(cityName)
+        else:
+            cityName = 'unknown'
+
+        existingCity = city_ref.child(cityName).get()
+        existingCity_ref = city_ref.child(cityName)
+        if(existingCity and not existingChild):
+            newInfluencer = existingCity_ref.child(row['Handle'])
+            newInfluencer.update({
+                'User': row['User'],
+                'User location': row['User location'],
+                'Handle': row['Handle'],
+                'Latitude': row['Tweet latitude'],
+                'Longitude': row['Tweet longitude'],
+                'Followers': row['Followers'],
+                'Total Tweets by user': row['Total Tweets by user'],
+                'Tweet': row['Tweet'],
+                'Influencer-Score': row['Influencer-Score'],
+            })
+        elif(not existingCity):
+            newCity = city_ref.child(cityName)
+            newInfluencer = newCity.child(row['Handle'])
+            newInfluencer.update({
+                'User': row['User'],
+                'User location': row['User location'],
+                'Handle': row['Handle'],
+                'Latitude': row['Tweet latitude'],
+                'Longitude': row['Tweet longitude'],
+                'Followers': row['Followers'],
+                'Total Tweets by user': row['Total Tweets by user'],
+                'Tweet': row['Tweet'],
+                'Influencer-Score': row['Influencer-Score'],
+            })
+
+
 
 
 if __name__ == '__main__':
