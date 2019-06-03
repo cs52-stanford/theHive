@@ -24,7 +24,7 @@ def save_data():
 
     ref_tweets = db.reference('/Tweets-Folder/' + str(datetime.date.today()) + '/')
     result = ref_tweets.get()
-    data = pd.DataFrame(columns=['Date', 'Tweet','Tweet latitude', 'Tweet longitude', 'User', 'User location', 'Retweets', 'Replies', 'Liked', 'Handle', 'Followers', 'Total Tweets by user'])
+    data = pd.DataFrame(columns=['Date', 'Tweet', 'Tweet latitude', 'Tweet longitude', 'User', 'User location', 'Retweets', 'Replies', 'Liked', 'Handle', 'Followers', 'Total Tweets by user'])
     for i,key in enumerate(result.keys()):
         data.loc[i] = (result[key]['Date'] if 'Date' in result[key] else np.NaN,
         result[key]['Tweet'] if 'Tweet' in result[key] else np.NaN,
