@@ -1,11 +1,19 @@
 import numpy as np
 import pandas as pd
+<<<<<<< HEAD
 import csv
+=======
+>>>>>>> f1e179071467c05b8aec532b80e5ed66f9f5a035
 import json
 import copy
 import datetime
 import firebase_admin
+import math
 from firebase_admin import credentials, db
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1e179071467c05b8aec532b80e5ed66f9f5a035
 
 def main():
     cred = credentials.Certificate("firebase-cred.json")
@@ -13,7 +21,6 @@ def main():
         'databaseURL': 'https://hive-258ce.firebaseio.com/'
     })
 
-    ref = db.reference()
     retrieveData()
 
 def retrieveData():
@@ -34,8 +41,12 @@ def retrieveData():
         result[key]['Followers'] if 'Followers' in result[key] else np.NaN,
         result[key]['Total Tweets by user'] if 'Total Tweets by user' in result[key] else np.NaN)
     data.fillna(0)
+<<<<<<< HEAD
     log_tweet_count = np.log(data['Total Tweets by user'].astype('float'))
     data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * log_tweet_count * (data['Liked']+1)) / 10**9
+=======
+    data['Influencer-Score'] = (data['Followers'] * (data['Retweets']+1) * math.log(data['Total Tweets by user'] + 1e-10) * (data['Liked']+1)) / 10**9
+>>>>>>> f1e179071467c05b8aec532b80e5ed66f9f5a035
     influencers = data.loc[data['Influencer-Score'] >= 1]
 
     influencer_ref = db.reference('Influencers/')
