@@ -6,28 +6,14 @@ from firebase_admin import credentials, db
 import random
 import re
 import geocoder
+import datetime
 
 kRequests = 450 #450 searches per 15/mins limit
-queries = ['#refugee', '#immigrants','#withrefugees', 'USA for UNHCR',
-            '@UNRefugeeAgency', '@UNHCRUSA','@Refugees', '#RefugeesWelcome',
-            '#home', '#unhcr','#refugees','#immigrants','#war','#israel',
-            '#migrants','#refugee','#muslim','#rohingyarefugees','#countries',
-            '#rohingya','#asylumseekers','#million', '#illegals','#country',
-            '#turkey','#seekers','#american','#helping','#years','#year',
-            '#asylum', '#lebanon','#syria','#syrianrefugees','#europe',
-            'Assimilation', 'Assisted', 'Voluntary', 'Return', 'Border',
-            'management','Brain drain', 'Brain gain', 'Capacity building',
-            'Circular migration', 'Country of origin', 'Emigration',
-            'Facilitated migration', 'Forced migration', 'Freedom of movement',
-            'Immigration', 'Internally displaced person','Naturalization',
-            'International minimum standards','Irregular migration',
-            'Labour migration', 'Migration', 'Migration management',
-            'Orderly migration', 'Push-pull factors', 'Receiving country',
-            'Repatriation','Remittances', 'Resettlement', 'Smuggling',
-            'Stateless person', 'Technical cooperation', 'Trafficking in persons',
-            'Xenophobia', 'Alien', 'Illegal Immigrant', 'Illegals', 'Undocumented',
-            'Caravan', 'UNHCR', 'UN', 'Refugees', 'ICE', 'deportation',
-            'border wall', 'illegal border crossing']
+queries = ['#refugee', '#immigrants', '#withrefugees', 'USA for UNHCR',
+            '@UNRefugeeAgency', '@UNHCRUSA', '@Refugees', '#RefugeesWelcome',
+            '#unhcr', '#refugees', '#immigrants', '#migrants',
+            '#asylumseekers', '#illegals', '#Undocumented',
+            'UNHCR', 'UN', 'Refugees', 'ICE', 'deportation', 'border wall']
 
 def main(request):
     credentials_arr = read_credentials(request) # returns array of dicts, each dict represents one login
@@ -48,7 +34,9 @@ def limit_handled(request, cursor, index):
 
 def runQuery(request, index, api, ref, added):
     for tweet in limit_handled(request, tweepy.Cursor(api.search, q=random.choice(queries), lang="en", geocode="39.8,-95.583068847656,2500km", tweet_mode='extended').items(), index):
-        tweet_ref = ref.child('Tweets-Real')
+        if tweet is None:
+            break
+        tweet_ref = ref.child('Tweets-Folder/' + str(datetime.date.today()))
 
         # ignores retweets
         if (hasattr(tweet, 'retweeted_status')):
@@ -96,7 +84,7 @@ def runQuery(request, index, api, ref, added):
                 'Tweet URL': url,
             })
 
-        added.append((text, tweet.user.name))
+        added.append((text, tweet.user.screen_name))
 
 def makeQueries(request, apis, ref):
     added = []
