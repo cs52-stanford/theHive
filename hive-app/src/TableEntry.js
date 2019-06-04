@@ -102,10 +102,10 @@ export default class TableEntry extends Component {
 
           {/* info */}
           <div style={infoStyle}>
-            <body style={nameStyle}> {this.props.marker.User} </body>
-            <body style={handleStyle}> @{this.props.marker.handle} </body>
-            <body style={bodyStyle}> Insert flagged tweet </body>
-            <body style={locStyle}> {this.props.marker.city}, {this.props.marker.state} </body>
+            <div style={nameStyle}> {this.props.marker.User} </div>
+            <div style={handleStyle}> @{this.props.marker.handle} </div>
+            <div style={bodyStyle}> Insert flagged tweet </div>
+            <div style={locStyle}> {this.props.marker.city}, {this.props.marker.state} </div>
           </div>
         </div>
 
