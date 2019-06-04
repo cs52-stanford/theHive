@@ -14,7 +14,7 @@ import InfluenceFlag from './influenceFlag.js';
 import TableEntry from './TableEntry.js';
 import { SearchBox } from 'react-instantsearch-dom';
 import './fonts.css'
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed } from 'react-twitter-embed';
 
 
 // consts
@@ -155,9 +155,8 @@ class SimpleMap extends Component {
     }
   }
 
-
   render() {
-
+    const handle = this.state.activeMarker.Handle;
     return (
       // Important! Always set the container height explicitly
       // <div style={{ height: '100vh', width: '100%' }}>
@@ -186,7 +185,7 @@ class SimpleMap extends Component {
                     activeMarker = {this.state.activeMarker}
                     lat={marker['Latitude']}
                     lng={marker['Longitude']}
-                    text={(index*1).toString()}
+                    text={(Math.round(marker['Influencer-Score']*1)).toString()}
                     hover={this.props.hoverKey === index}
                     marker={marker}
                     >
@@ -197,9 +196,10 @@ class SimpleMap extends Component {
 
           {/* sidebar */}
           <div>
+          {this.state.activeMarker.Handle}
           <TwitterTimelineEmbed
             sourceType="profile"
-            screenName="JesuitRefugee"
+            screenName="RealErinCruz"
             options={{height: 320}}
             activeMarker = {this.state.activeMarker}
           />

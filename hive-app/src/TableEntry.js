@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import {
   M_WIDTH,
   M_HEIGHT,
-} from './data/numbers'
+} from './data/numbers';
 import InfluenceFlag from './influenceFlag.js';
-import './fonts.css'
+import './fonts.css';
 
 const ENTRY_INFO_LENGTH = M_WIDTH * 4;
 
@@ -93,12 +93,19 @@ export default class TableEntry extends Component {
       cellStyleFinal = cellSelectedStyle;
     }
 
+    const imglink = "https://twitter.com/" + this.props.marker['Handle'] + "/profile_image?size=normal"
     return (
       <a>
       <div style={cellStyleFinal}>
 
         <div style={entryStyle}>
+          {/* image */}
+          <div style={imageStyle}>
+            <img
+              src={imglink}
 
+            />
+          </div>
           {/* info */}
           <div style={infoStyle}>
             <div style={nameStyle}> {this.props.marker['User']} </div>
