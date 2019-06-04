@@ -13,9 +13,9 @@ const ENTRY_INFO_LENGTH = M_WIDTH * 4;
 const cellStyle = {
   display: 'flex',
   // backgroundColor: 'whitesmoke',
-  'justify-content': 'space-between',
+  justifyContent: 'space-between',
   // 'align-items': 'center',
-  'border-bottom': '2px solid whitesmoke',
+  borderBottom: '2px solid whitesmoke',
 };
 
 const cellSelectedStyle = {
@@ -33,8 +33,8 @@ const entryStyle = {
 const imageStyle = {
   width: ENTRY_INFO_LENGTH,
   height: ENTRY_INFO_LENGTH,
-  'min-width': ENTRY_INFO_LENGTH,
-  'min-height': ENTRY_INFO_LENGTH,
+  minWidth: ENTRY_INFO_LENGTH,
+  minHeight: ENTRY_INFO_LENGTH,
   borderRadius: ENTRY_INFO_LENGTH,
 
   backgroundColor: 'LightGray',
@@ -44,10 +44,10 @@ const imageStyle = {
 const infoStyle = {
   // backgroundColor: 'LightGray',
   display: 'flex',
-  'flex-direction': 'column',
-  'white-space': 'wrap',
+  flexDirection: 'column',
+  whiteSpace: 'wrap',
   display: 'flex',
-  'justify-content': 'space-between',
+  justifyContent: 'space-between',
 };
 
 const bodyStyle = {
@@ -102,10 +102,10 @@ export default class TableEntry extends Component {
 
           {/* info */}
           <div style={infoStyle}>
-            <body style={nameStyle}> Marker #{this.props.marker.index} </body>
-            <body style={handleStyle}> @{this.props.marker.handle} </body>
-            <body style={bodyStyle}> insert bio here </body>
-            <body style={locStyle}> {this.props.marker.city}, {this.props.marker.state} </body>
+            <div style={nameStyle}> Marker #{this.props.marker.index} </div>
+            <div style={handleStyle}> @{this.props.marker.handle} </div>
+            <div style={bodyStyle}> insert bio here </div>
+            <div style={locStyle}> {this.props.marker.city}, {this.props.marker.state} </div>
           </div>
         </div>
 
