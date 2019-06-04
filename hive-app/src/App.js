@@ -144,9 +144,10 @@ class SimpleMap extends Component {
 
         {/* sidebar */}
         <div>
+        {this.state.activeMarker.handle}
         <TwitterTimelineEmbed
           sourceType="profile"
-          screenName="JesuitRefugee"
+          screenName="JesuitRefugee" /*this.state.activeMarker.handle*/
           options={{height: 320}}
           activeMarker = {this.state.activeMarker}
         />

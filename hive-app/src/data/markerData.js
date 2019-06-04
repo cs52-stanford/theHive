@@ -7,6 +7,7 @@ const markerList = [
     state: 'NY',
     handle: 'Refugees',
     influence: 4,
+    User: 'UNHCR, the UN Refugee Agency'
   },
 
   {
@@ -17,7 +18,7 @@ const markerList = [
     state: 'MO',
     handle: 'DRC_dk',
     influence: 3,
-
+    User: 'DanishRefugeeCouncil'
   },
 
   {
@@ -28,6 +29,7 @@ const markerList = [
     state: 'CA',
     handle: 'ecre',
     influence: 2,
+    User: 'ECRE'
   },
 
   {
@@ -38,6 +40,7 @@ const markerList = [
     state: 'MI',
     handle: 'JesuitRefugee',
     influence: 1,
+    User: 'JRS International'
 
   },
 
@@ -49,6 +52,7 @@ const markerList = [
     state: 'CA',
     handle: 'wrcommission',
     influence: 3,
+    User: 'Womens Refugee Commission'
   },
 
   {
@@ -59,7 +63,7 @@ const markerList = [
     state: 'TX',
     handle: 'AboutRefugees',
     influence: 2,
-
+    User: 'AboutRefugees'
   },
 
   {
@@ -70,7 +74,7 @@ const markerList = [
     state: 'IL',
     handle: 'nowthisnews',
     influence: 4,
-
+    User: 'NowThis'
   },
 ]
 
