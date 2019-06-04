@@ -17,14 +17,12 @@ import './fonts.css'
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
 
-
 // consts
 import {markerList} from './data/markerData';
 
 // Return map bounds based on list of places
 const getMapBounds = (map, maps, markerList) => {
   const bounds = new maps.LatLngBounds();
-
   markerList.forEach((marker) => {
     bounds.extend(new maps.LatLng(
       marker.lat,
@@ -78,7 +76,23 @@ class SimpleMap extends Component {
       activeMarker: marker,
     });
 
-}
+    //use this code to fetch
+    //replace console.log(data) with whatever you need to convert data to the display
+    fetch('https://us-central1-angelic-artwork-220408.cloudfunctions.net/get-influencers', {
+      method: 'GET',
+      mode: 'cors',
+    })
+      .then(r => r.json())
+      .then(function(data) {
+        console.log(data); //replace this
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+      //use above code to fetch
+
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -133,7 +147,7 @@ class SimpleMap extends Component {
         <TwitterTimelineEmbed
           sourceType="profile"
           screenName="JesuitRefugee"
-          options={{height: 400}}
+          options={{height: 320}}
           activeMarker = {this.state.activeMarker}
         />
         {markerList.map((marker, index) => (
