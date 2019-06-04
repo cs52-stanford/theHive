@@ -59,21 +59,20 @@ const bodyStyle = {
 const nameStyle = {
   ...bodyStyle,
   fontWeight: 'bold',
-  lineHeight: 1.5,
+  paddingBottom: '0em',
 };
 
 const handleStyle = {
   ...bodyStyle,
   fontSize: 14,
   color: 'gray',
+  paddingBottom: '1em',
 };
 
 const locStyle = {
   ...bodyStyle,
   fontSize: 12,
   color: 'gray',
-  lineHeight: 3,
-
 };
 
 export default class TableEntry extends Component {
@@ -99,9 +98,6 @@ export default class TableEntry extends Component {
       <div style={cellStyleFinal}>
 
         <div style={entryStyle}>
-          {/* image */}
-          <div style={imageStyle}>
-          </div>
 
           {/* info */}
           <div style={infoStyle}>

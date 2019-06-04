@@ -165,9 +165,9 @@ class SimpleMap extends Component {
       { this.state && this.state.data &&
         <SplitterLayout
         primaryIndex={1}
-        primaryMinSize={window.innerWidth*0.25}
+        primaryMinSize={window.innerWidth*0.2}
         // restrict table size to 25% only
-        secondaryMinSize={window.innerWidth*0.75}>
+        secondaryMinSize={window.innerWidth*0.8}>
           <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMap
               bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
