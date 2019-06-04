@@ -47,7 +47,7 @@ const infoStyle = {
   flexDirection: 'column',
   whiteSpace: 'wrap',
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'start',
 };
 
 const bodyStyle = {
@@ -59,6 +59,7 @@ const bodyStyle = {
 const nameStyle = {
   ...bodyStyle,
   fontWeight: 'bold',
+  lineHeight: 1.5,
 };
 
 const handleStyle = {
@@ -71,6 +72,8 @@ const locStyle = {
   ...bodyStyle,
   fontSize: 12,
   color: 'gray',
+  lineHeight: 3,
+
 };
 
 export default class TableEntry extends Component {
@@ -87,7 +90,7 @@ export default class TableEntry extends Component {
 
   render() {
     let cellStyleFinal = cellStyle;
-    if (this.props.activeMarker.index === this.props.marker.index) {
+    if (this.props.activeMarker['Handle'] === this.props.marker['Handle']) {
       cellStyleFinal = cellSelectedStyle;
     }
 
@@ -102,10 +105,9 @@ export default class TableEntry extends Component {
 
           {/* info */}
           <div style={infoStyle}>
-            <div style={nameStyle}> Marker #{this.props.marker.index} </div>
-            <div style={handleStyle}> @{this.props.marker.handle} </div>
-            <div style={bodyStyle}> insert bio here </div>
-            <div style={locStyle}> {this.props.marker.city}, {this.props.marker.state} </div>
+            <div style={nameStyle}> {this.props.marker['User']} </div>
+            <div style={handleStyle}> @{this.props.marker['Handle']} </div>
+            <div style={locStyle}> {this.props.marker['User location']} </div>
           </div>
         </div>
 

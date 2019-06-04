@@ -40,7 +40,7 @@ export default class Marker extends Component {
   static propTypes = {
     text: PropTypes.string,
     handle: PropTypes.string,
-    influence: PropTypes.number,
+    influence: PropTypes.string,
     hover: PropTypes.bool,
     user: PropTypes.string,
     followers: PropTypes.number,

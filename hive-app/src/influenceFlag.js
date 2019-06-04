@@ -26,7 +26,7 @@ const starInfluenceStyle = {
   // color
   backgroundColor: '#ecbf42',
   color: 'black',
-  
+
   // font
   color: 'black',
   fontSize: 16,
@@ -68,16 +68,16 @@ export default class InfluenceFlag extends Component {
   render() {
     let influenceText;
     let style;
-    if (this.props.influence === 1) {
+    if (this.props.influence === "micro") {
       influenceText = "MICRO";
       style = microInfluenceStyle;
-    } else if (this.props.influence === 2) {
+    } else if (this.props.influence === "mid") {
       influenceText = "MID";
       style = midInfluenceStyle;
-    } else if (this.props.influence === 3) {
+    } else if (this.props.influence === "macro") {
       influenceText = "MACRO";
       style = macroInfluenceStyle;
-    } else if (this.props.influence === 4) {
+    } else if (this.props.influence === "star") {
       influenceText = "STAR";
       style = starInfluenceStyle;
     }

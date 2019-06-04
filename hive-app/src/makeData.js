@@ -10,18 +10,11 @@ const range = len => {
 };
 
 const newPerson = (marker, influence) => {
-  return {
-    handle: marker['Handle'],
-    influence: influence,
-    user: marker.['User'],
-    followers: marker['Followers'],
-    influencerScore: marker['Influencer-Score'],
-    location: marker['User location'],
-    lat: marker['Latitude'],
-    lng: marker['Longitude'],
+  marker.influence = influence;
+  return marker;
 };
 
-export function makeData(len = 5553) {
+export function makeData() {
   var finalData;
   fetch('https://us-central1-angelic-artwork-220408.cloudfunctions.net/get-influencers', {
     method: 'GET',

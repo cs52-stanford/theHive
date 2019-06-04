@@ -19,11 +19,61 @@ import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterH
 
 // consts
 import {markerList} from './data/markerData';
+var finalData = markerList;
+
+const makeData = () => {
+  //use this code to fetch
+  //replace console.log(data) with whatever you need to convert data to the display
+  fetch('https://us-central1-angelic-artwork-220408.cloudfunctions.net/get-influencers', {
+    method: 'GET',
+    mode: 'cors',
+  })
+    .then(r => r.json())
+    .then(function(data) {
+      {/* star array */}
+      var starA = Object.values(data.star);
+      for (var i = 0; i < starA.length; i++) {
+        starA[i].influence = "star";
+      }
+
+      {/* macro array */}
+      var macroA = Object.values(data.macro);
+      for (var i = 0; i < macroA.length; i++) {
+        macroA[i].influence = "macro";
+      }
+
+      {/* mid array */}
+      var midA = Object.values(data.mid);
+      for (var i = 0; i < midA.length; i++) {
+        midA[i].influence = "mid";
+      }
+
+      {/* micro array */}
+      var microA = Object.values(data.micro);
+      for (var i = 0; i < microA.length; i++) {
+        microA[i].influence = "micro";
+      }
+      // firstPass.append(Object.values(data.macro));
+      // firstPass.append(Object.values(data.mid));
+      // firstPass.append(Object.values(data.micro));
+      console.log('returned data from makeData: ', starA);
+
+      starA = starA.concat(macroA);
+      starA = starA.concat(midA);
+      starA = starA.concat(microA);
+      finalData = starA;
+      return data;
+    })
+    .catch(function(error) {
+      console.log(error);
+      return ("error");
+    });
+};
 
 // Return map bounds based on list of places
-const getMapBounds = (map, maps, markerList) => {
+const getMapBounds = (map, maps, finalData) => {
   const bounds = new maps.LatLngBounds();
-  markerList.forEach((marker) => {
+  finalData.forEach((marker) => {
     bounds.extend(new maps.LatLng(
       marker.lat,
       marker.lng,
@@ -42,14 +92,15 @@ const bindResizeListener = (map, maps, bounds) => {
 };
 
 // Fit map to its bounds after the api is loaded
-const apiIsLoaded = (map, maps, markerList) => {
+const apiIsLoaded = (map, maps, finalData, e) => {
   // Get bounds by our places
-  const bounds = getMapBounds(map, maps, markerList);
+  const bounds = getMapBounds(map, maps, finalData);
   // Fit map to bounds
   // map.fitBounds(bounds);
 
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
+
 };
 
 class SimpleMap extends Component {
@@ -73,94 +124,99 @@ class SimpleMap extends Component {
     this.setState({
       center: [marker.lat, marker.lng],
       // activeMarkerIndex: marker.index, // key can't be passed as a prop
-      activeMarker: marker,
+      activeMarker: marker.marker,
     });
-
-    //use this code to fetch
-    //replace console.log(data) with whatever you need to convert data to the display
-    fetch('https://us-central1-angelic-artwork-220408.cloudfunctions.net/get-influencers', {
-      method: 'GET',
-      mode: 'cors',
-    })
-      .then(r => r.json())
-      .then(function(data) {
-        console.log(data); //replace this
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-      //use above code to fetch
-
+    // console.log(this.state.data);
   }
 
   constructor(props) {
     super(props);
     this.state = {
       // activeMarkerIndex: null,
-      activeMarker: 0,
+      activeMarker: "",
       center: initialCenter,
       zoom: initialZoom,
       places: null,
       maps: null,
+      dataIsLoaded: false,
+      data: markerList,
     }
   }
 
+  componentDidMount() {
+    const self = this;
+    console.log('mounted!');
+    makeData(data => self.setState({ data: data, dataIsLoaded: true }));
+
+    if(this.state.dataIsLoaded === false) {
+      console.log('not yet!!');
+    } else {
+      console.log('now!!!');
+    }
+  }
+
+
   render() {
+
     return (
       // Important! Always set the container height explicitly
       // <div style={{ height: '100vh', width: '100%' }}>
-      <SplitterLayout
-      primaryIndex={1}
-      primaryMinSize={window.innerWidth*.25}
-      // restrict table size to 25% only
-      secondaryMinSize={window.innerWidth*.75}>
-        <div style={{ height: '100vh', width: '100%' }}>
-          <GoogleMap
-            bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
-            center={this.state.center}
-            zoom={this.state.zoom}
-            hoverDistance={M_WIDTH}
-            yesIWantToUseGoogleMapApiInternals
-            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, markerList)}
-            onChildClick={this._onChildClick}
-          >
-            {markerList.map((marker, index) => (
-                <Marker
+      <div>
+      { this.state && this.state.data &&
+        <SplitterLayout
+        primaryIndex={1}
+        primaryMinSize={window.innerWidth*0.25}
+        // restrict table size to 25% only
+        secondaryMinSize={window.innerWidth*0.75}>
+          <div style={{ height: '100vh', width: '100%' }}>
+            <GoogleMap
+              bootstrapURLKeys={{key: 'AIzaSyDXoh9xjEP-dJLfTkwYPPKUQzWe51npX28'}}
+              center={this.state.center}
+              zoom={this.state.zoom}
+              hoverDistance={M_WIDTH}
+              yesIWantToUseGoogleMapApiInternals
+              onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, finalData)}
+              onChildClick={this._onChildClick}
+            >
+              {(finalData).map((marker, index) => (
+                  <Marker
+                    key={index}
+                    index={index}
+                    // activeMarkerIndex={this.state.activeMarkerIndex}
+                    activeMarker = {this.state.activeMarker}
+                    lat={marker['Latitude']}
+                    lng={marker['Longitude']}
+                    text={(index*1).toString()}
+                    hover={this.props.hoverKey === index}
+                    marker={marker}
+                    >
+                  </Marker>
+              ))}
+            </GoogleMap>
+          </div>
+
+          {/* sidebar */}
+          <div>
+          <TwitterTimelineEmbed
+            sourceType="profile"
+            screenName="JesuitRefugee"
+            options={{height: 320}}
+            activeMarker = {this.state.activeMarker}
+          />
+          {(finalData).map((marker, index) => (
+                <TableEntry
                   key={index}
                   index={index}
-                  // activeMarkerIndex={this.state.activeMarkerIndex}
                   activeMarker = {this.state.activeMarker}
-                  lat={marker.lat}
-                  lng={marker.lng}
-                  text={(index*100).toString()}
-                  handle={marker.handle}
-                  influence={marker.influence}
-                  hover={this.props.hoverKey === index}
+                  marker={marker}
                   >
-                </Marker>
+                </TableEntry>
             ))}
-          </GoogleMap>
-        </div>
+          </div>
+      </SplitterLayout>
+      }
+      </div>
 
-        {/* sidebar */}
-        <div>
-        <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="JesuitRefugee"
-          options={{height: 320}}
-          activeMarker = {this.state.activeMarker}
-        />
-        {markerList.map((marker, index) => (
-              <TableEntry
-                key={index}
-                index={index}
-                activeMarker = {this.state.activeMarker}
-                marker={marker}
-                >
-              </TableEntry>
-          ))}
-        </div>
-    </SplitterLayout>
     );
   }
 }

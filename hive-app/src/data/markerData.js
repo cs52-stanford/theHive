@@ -1,76 +1,28 @@
 const markerList = [
   {
-    index: 0,
-    lat: 40.7128,
-    lng: -74.0060,
-    city: 'New York City',
-    state: 'NY',
-    handle: 'Refugees',
-    influence: 4,
+    'Followers': 8249315,
+    'Handle': "chelseahandler",
+    'Influencer-Score': 154655.12831892286,
+    'Latitude': 34.05349000000007,
+    'Longitude': -118.24531999999999,
+    'Total Tweets by user': 10575,
+    'Tweet': "Hearing Robert Mueller speak today sent an electrifying feeling south of my border that I haven’t felt since before the election. It didn’t matter what he was saying, it was my own personal serenade. Your move, Congress.",
+    'User': "Chelsea Handler",
+    'User location': "Los Angeles, CA",
+    influence: "mid",
   },
 
   {
-    index: 1,
-    lat: 39.0997,
-    lng: -94.5786,
-    city: 'Kansas City',
-    state: 'MO',
-    handle: 'DRC_dk',
-    influence: 3,
-
-  },
-
-  {
-    index: 2,
-    lat: 33.8583,
-    lng: -118.0648,
-    city: 'Cerritos',
-    state: 'CA',
-    handle: 'ecre',
-    influence: 2,
-  },
-
-  {
-    index: 3,
-    lat: 42.2808,
-    lng: -83.7430,
-    city: 'Ann Arbor',
-    state: 'MI',
-    handle: 'JesuitRefugee',
-    influence: 1,
-
-  },
-
-  {
-    index: 4,
-    lat: 37.7749,
-    lng: -122.4194,
-    city: 'San Francisco',
-    state: 'CA',
-    handle: 'wrcommission',
-    influence: 3,
-  },
-
-  {
-    index: 5,
-    lat: 29.7604,
-    lng: -95.3698,
-    city: 'Houston',
-    state: 'TX',
-    handle: 'AboutRefugees',
-    influence: 2,
-
-  },
-
-  {
-    index: 6,
-    lat: 41.8781,
-    lng: -87.6298,
-    city: 'Chicago',
-    state: 'IL',
-    handle: 'nowthisnews',
-    influence: 4,
-
+    'Followers': 11090672,
+    'Handle': "UN",
+    'Influencer-Score': 67273.33448475187,
+    'Latitude': 40,
+    'Longitude': -120,
+    'Total Tweets by user': 69174,
+    'Tweet': "“This is the world we want: a world in which contributions from everybody, everywhere matter” - @antonioguterres at music workshop #WithRefugees and @YoYo_Ma in Vienna. https://t.co/4SqrNiCOrb https://t.co/s3rHnvcqYD",
+    'User': "United Nations",
+    'User location': "New York, NY",
+    influence: "star",
   },
 ]
 
