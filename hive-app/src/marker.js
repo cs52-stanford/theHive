@@ -42,10 +42,16 @@ export default class Marker extends Component {
     handle: PropTypes.string,
     influence: PropTypes.number,
     hover: PropTypes.bool,
+    user: PropTypes.string,
+    followers: PropTypes.number,
+    influencerScore: PropTypes.number,
+    location: PropTypes.string,
+    lat: PropTypes.number,
+    lng: PropTypes.number,
   };
 
   static defaultProps = {
-    handle: 'refugees',
+    handle: 'handle',
   };
 
   constructor(props) {
