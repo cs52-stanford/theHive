@@ -42,7 +42,6 @@ const imageStyle = {
 };
 
 const infoStyle = {
-  // backgroundColor: 'LightGray',
   display: 'flex',
   flexDirection: 'column',
   whiteSpace: 'wrap',

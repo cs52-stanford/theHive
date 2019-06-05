@@ -103,10 +103,22 @@ const apiIsLoaded = (map, maps, finalData, e) => {
   bindResizeListener(map, maps, bounds);
 };
 
+// abbreviates the number
 const convertScore = (marker) => {
   var abbreviate = require('number-abbreviate');
-  return abbreviate(Math.round(marker['Influencer-Score'])).toString();
+  // return abbreviate(Math.round(marker['Influencer-Score'])).toString();
+  return abbreviate(Math.round(marker['Followers'])).toString();
 }
+
+// style for title(TODO: replace later into another file)
+const titleStyle = {
+  color: 'black',
+  fontSize: 24,
+  fontFamily: 'Roboto',
+  padding: 15,
+  // textAlign: 'center',
+  fontWeight: 'bold',
+};
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -136,9 +148,11 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // activeMarkerIndex: null,
+      // default marker to pass into active marker
       activeMarker: {
-        Handle: 'twitter',
+        'Handle': 'twitter',
+        'User': 'No selected marker',
+        'User location': 'N/A',
       },
       center: initialCenter,
       zoom: initialZoom,
@@ -202,6 +216,13 @@ class SimpleMap extends Component {
 
           {/* sidebar */}
           <div>
+
+          <div style={titleStyle}> Selected Marker </div>
+          <TableEntry
+            activeMarker = {this.state.activeMarker}
+            marker={this.state.activeMarker}
+            >
+          </TableEntry>
           <Timeline
             dataSource={{
               sourceType: 'profile',
@@ -213,6 +234,11 @@ class SimpleMap extends Component {
             }}
             onLoad={() => console.log('Timeline is loaded!')}
           />
+
+          <div style = {{
+            border: '1px solid whitesmoke',
+          }} />
+          <div style={titleStyle}> Influencers </div>
           {(finalData).map((marker, index) => (
                 <TableEntry
                   key={index}
