@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   M_WIDTH,
-  M_HEIGHT,
   MICRO_COLOR,
   MID_COLOR,
   MACRO_COLOR,
@@ -13,18 +12,18 @@ import {
 const starMarkerStyle = {
   position: 'absolute',
   width: M_WIDTH,
-  height: M_HEIGHT,
+  height: M_WIDTH,
   left: -M_WIDTH / 2,
-  top: -M_HEIGHT / 2,
+  top: -M_WIDTH / 2,
 
   border: '5px solid #ecbf42',
-  borderRadius: M_HEIGHT,
+  borderRadius: M_WIDTH,
   backgroundColor: STAR_COLOR,
   display: 'flex',
   justifyContent:'center',
   alignItems:'center',
   color: 'white',
-  fontSize: 14,
+  fontSize: 12,
   fontWeight: 'bold',
   padding: 4,
 };
@@ -36,9 +35,9 @@ const markerStyleHover = {
   backgroundColor: 'white',
   borderRadius: 50,
   width: M_WIDTH*2,
-  height: M_HEIGHT*2,
+  height: M_WIDTH*2,
   left: -M_WIDTH*2/ 2,
-  top: -M_HEIGHT*2 / 2,
+  top: -M_WIDTH*2 / 2,
   zIndex: 1,
 };
 

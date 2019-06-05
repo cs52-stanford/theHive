@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
   M_WIDTH,
-  M_HEIGHT,
 } from './data/numbers';
 import InfluenceFlag from './influenceFlag.js';
 import './fonts.css';
@@ -117,15 +116,16 @@ export default class TableEntry extends Component {
 
         {/* flag */}
         <div style={{
-          display: 'flex',
-          // backgroundColor: 'yellow',
-          'min-width': M_WIDTH * 4,
-          // 'align-items': 'center',
+          minWidth: M_WIDTH * 4,
         }}>
+
+        {this.props.marker && this.props.marker.influence &&
           <InfluenceFlag
             influence={this.props.marker.influence}>
           </InfluenceFlag>
+        }
         </div>
+
 
         </div>
       </a>

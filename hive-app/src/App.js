@@ -6,7 +6,6 @@ import {
   initialCenter,
   initialZoom,
   M_WIDTH,
-  M_HEIGHT,
 } from './data/numbers'
 import Marker from './marker.js';
 import PropTypes from 'prop-types';
@@ -107,7 +106,11 @@ const apiIsLoaded = (map, maps, finalData, e) => {
 const convertScore = (marker) => {
   var abbreviate = require('number-abbreviate');
   // return abbreviate(Math.round(marker['Influencer-Score'])).toString();
-  return abbreviate(Math.round(marker['Followers'])).toString();
+  if (typeof marker['Followers'] === 'string') {
+    return marker['Followers'];
+  } else {
+    return abbreviate(Math.round(marker['Followers'])).toString();
+  }
 }
 
 // style for title(TODO: replace later into another file)
@@ -148,7 +151,7 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // default marker to pass into active marker
+      // default selected marker to show
       activeMarker: {
         'Handle': 'twitter',
         'User': 'No selected marker',
@@ -229,10 +232,9 @@ class SimpleMap extends Component {
               screenName: (this.state.activeMarker.Handle).toString(),
             }}
             options={{
-              username: 'TwitterDev',
+              username: 'Twitter Widget',
               height: '400'
             }}
-            onLoad={() => console.log('Timeline is loaded!')}
           />
 
           <div style = {{

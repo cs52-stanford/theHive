@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   M_WIDTH,
-  M_HEIGHT,
   MICRO_COLOR,
   MID_COLOR,
   MACRO_COLOR,
@@ -16,7 +15,7 @@ const starInfluenceStyle = {
   // position: 'absolute',
   width: INFLUENCE_FLAG_LENGTH*2,
   height: INFLUENCE_FLAG_LENGTH,
-  'min-width': INFLUENCE_FLAG_LENGTH*2,
+  minWidth: INFLUENCE_FLAG_LENGTH*2,
 
   display: 'flex',
   justifyContent:'center',
@@ -53,12 +52,12 @@ const macroInfluenceStyle = {
 
 export default class InfluenceFlag extends Component {
   static propTypes = {
-    influence: PropTypes.number,
+    influence: PropTypes.string,
     text: PropTypes.string,
   };
 
   static defaultProps = {
-    influence: 1,
+    influence: "star",
   };
 
   constructor(props) {
@@ -83,11 +82,9 @@ export default class InfluenceFlag extends Component {
     }
 
     return (
-      <a>
-        <div style={style}>
-          {influenceText}
-        </div>
-      </a>
+      <div style={style}>
+        {influenceText}
+      </div>
     );
   }
 }
