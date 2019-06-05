@@ -6,6 +6,7 @@
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
+    "number-abbreviate": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-controllables": "^0.6.0",
@@ -15,6 +16,7 @@
     "react-split-pane": "^0.1.87",
     "react-splitter-layout": "^4.0.0",
     "react-twitter-embed": "^2.0.8",
+    "react-twitter-widgets": "^1.7.1",
     "styled-components": "^4.2.0"
   },
   "scripts": {

@@ -13,8 +13,9 @@ import PropTypes from 'prop-types';
 import InfluenceFlag from './influenceFlag.js';
 import TableEntry from './TableEntry.js';
 import { SearchBox } from 'react-instantsearch-dom';
-import './fonts.css'
+import './fonts.css';
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed } from 'react-twitter-embed';
+import { Timeline } from 'react-twitter-widgets';
 
 
 // consts
@@ -100,8 +101,12 @@ const apiIsLoaded = (map, maps, finalData, e) => {
 
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
-
 };
+
+const convertScore = (marker) => {
+  var abbreviate = require('number-abbreviate');
+  return abbreviate(Math.round(marker['Influencer-Score'])).toString();
+}
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -126,14 +131,15 @@ class SimpleMap extends Component {
       // activeMarkerIndex: marker.index, // key can't be passed as a prop
       activeMarker: marker.marker,
     });
-    // console.log(this.state.data);
   }
 
   constructor(props) {
     super(props);
     this.state = {
       // activeMarkerIndex: null,
-      activeMarker: "",
+      activeMarker: {
+        Handle: 'twitter',
+      },
       center: initialCenter,
       zoom: initialZoom,
       places: null,
@@ -185,7 +191,7 @@ class SimpleMap extends Component {
                     activeMarker = {this.state.activeMarker}
                     lat={marker['Latitude']}
                     lng={marker['Longitude']}
-                    text={(Math.round(marker['Influencer-Score']*1)).toString()}
+                    text={convertScore(marker)}
                     hover={this.props.hoverKey === index}
                     marker={marker}
                     >
@@ -196,12 +202,16 @@ class SimpleMap extends Component {
 
           {/* sidebar */}
           <div>
-          {this.state.activeMarker.Handle}
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="RealErinCruz"
-            options={{height: 320}}
-            activeMarker = {this.state.activeMarker}
+          <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: (this.state.activeMarker.Handle).toString(),
+            }}
+            options={{
+              username: 'TwitterDev',
+              height: '400'
+            }}
+            onLoad={() => console.log('Timeline is loaded!')}
           />
           {(finalData).map((marker, index) => (
                 <TableEntry

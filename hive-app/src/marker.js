@@ -61,7 +61,7 @@ export default class Marker extends Component {
   render() {
 
     var style = this.props.$hover ? markerStyleHover : markerStyle;
-    if ((this.props.activeMarker.index === this.props.index)) {
+    if ((this.props.activeMarker.Handle === this.props.marker.Handle)) {
       style = markerStyleHover;
     }
     return (

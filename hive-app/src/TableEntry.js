@@ -100,12 +100,14 @@ export default class TableEntry extends Component {
 
         <div style={entryStyle}>
           {/* image */}
-          <div style={imageStyle}>
+          {/*
+            <div style={imageStyle}>
             <img
               src={imglink}
-
             />
           </div>
+          */}
+
           {/* info */}
           <div style={infoStyle}>
             <div style={nameStyle}> {this.props.marker['User']} </div>
