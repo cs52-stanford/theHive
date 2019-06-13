@@ -15,16 +15,16 @@ Our team and the Hive agreed to create a tools which can help to identify Twitte
 
 Please see the videos below, which show how the tool works. 
 
-## Demo 1: The map interface, displaying the Twitter users by location, with the number of followers in circles. The panel on the right ranks the influencers visible in the map by their level of influence and attaches a label based on the following:
+### Demo 1: The map interface, displaying the Twitter users by location, with the number of followers in circles. The panel on the right ranks the influencers visible in the map by their level of influence and attaches a label based on the following:
 
-1K – 100K followers = MICRO influencers
-100K – 500K followers = MID-tier influencers
-500K – 2M followers = MACRO influencers
-2M+ followers = all-STAR influencers 
++ 1K – 100K followers = MICRO influencers
++ 100K – 500K followers = MID-tier influencers
++ 500K – 2M followers = MACRO influencers
++ 2M+ followers = all-STAR influencers 
 
 [Click here to see Demo 1](https://r1---sn-a5mlrn7z.c.drive.google.com/videoplayback?expire=1560479644&ei=XM8CXeLCA9PmuAXBkLDwDQ&ip=73.162.57.5&cp=QVNLUkVfWFZSRVhOOnViTTF2T1Z4SlVKem9sdmVaOFo2MXk1N1Vhb1FocXRVSFNBVVBZaTNZeHY&id=8d7dabdd3d74bb95&itag=18&source=webdrive&requiressl=yes&ttl=transient&susc=dr&driveid=1H9OkF2oEs7Je1BbJb3P9cgCHNV3OdzhZ&app=explorer&mime=video/mp4&dur=25.890&lmt=1559781014040165&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,dur,lmt&sig=ALgxI2wwRgIhAIlwShTaCNeBTym8PkTUlzi6Pf-Xrae0wW1-njCgzZtrAiEAoYdqd29KxguMX8Ju6S5JHVhoxbKnpE6BSpJS_eJgCzM=&cpn=DFnPccLhLpJyvMND&c=WEB_EMBEDDED_PLAYER&cver=20190612&redirect_counter=1&cm2rm=sn-n4vey7e&req_id=850ee9d41de836e2&cms_redirect=yes&mm=34&mn=sn-a5mlrn7z&ms=ltu&mt=1560464215&mv=u&pl=23&lsparams=mm,mn,ms,mv,pl&lsig=AHylml4wRgIhAKM460g8ISKc8l-ugduOaR3XF5vVbtWtEr2ba4mSXgRuAiEA1dIa47_IQ8pLPyiZ_ZztqWxU6g-NVQp5WQ11uitew7o=)
 
-## Demo 2: Once an influencer of interest has been identified, the user can click on their name, and will be taken to the Twitter page of that influencer. 
+### Demo 2: Once an influencer of interest has been identified, the user can click on their name, and will be taken to the Twitter page of that influencer. 
 
 [Click here to see Demo 2](https://r4---sn-n4v7knl6.c.drive.google.com/videoplayback?expire=1560479420&ei=fM4CXYCvNsmfugWVyo-IBA&ip=73.162.57.5&cp=QVNLUkVfWFRQQVhOOnViTTF0TVJ4SlVKem9sdGNWOFo2MXk1N1N5a1FocXRVSFNZU0xZaTNZeHY&id=f7a99f0d8ee37a19&itag=22&source=webdrive&requiressl=yes&mm=30&mn=sn-n4v7knl6&ms=nxu&mv=u&pl=23&ttl=transient&susc=dr&driveid=1HB1u-sdeUVlKqe9f2dIw0648sjvAECJf&app=explorer&mime=video/mp4&dur=16.230&lmt=1559781054530239&mt=1560464192&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,dur,lmt&sig=ALgxI2wwRQIgOmpFubvL0Ow1xOzbjkx4F3v748PhGyiTSvKGtEgI7boCIQDu8D7UdDCi8XoARqEiNGCt5VeHH8DGUxj5qKVa55B2Vw==&lsparams=mm,mn,ms,mv,pl&lsig=AHylml4wRQIgVFyIu9nRjW9GC1GwXlcfFwr7dcVZNYuYoEtRLhQdQ5wCIQDoBUteZ239Wwa0CJL9b8L6hSrsyQEgCbQbsFHqxuNJMA==&cpn=Hxf1ASixKzej8XQ6&c=WEB_EMBEDDED_PLAYER&cver=20190612)
 
