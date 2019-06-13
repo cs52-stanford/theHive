@@ -3,22 +3,30 @@
 </p>
 
 # The Hive
-The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agencency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
+The Hive is a special projects unit of USA for UNHCR, the UN Refugee Agency. They are a team of digital and data strategists who find creative ways of addressing the global refugee crisis. One key area of focus for the Hive is to identify strategies to increase donations. This includes increasing donor engagement and shifting the conversation around refugees in the US.
 
 # The Challenge
-Improve The Hive’s donor engagement and fundraising efficacy via social media analysis to aid in their marketing strategy development. This is best achieved in a few ways: by identifying social media “influencers”, recognizing trends in donor sentiment by geographical region, examining word usage and effectiveness in donor appeal and retention, and locating region specific refugee-related news stories.
+The Hive wishes to identify social media users on Twitter who are influential, or have potential to be influential, in the online conversation about refugees. Knowing who these users are can help them better target their online outreach, and identify Twitter users who might become advocates for the Hive's messages about refugees. 
 
 # Our solution
-Our team has had extensive conversations with the staff at Hive, including their communications team. Through these conversations, we agreed to create the following tools which can help to increase donor engagement. These tools have been be combined into a dashboard for The Hive to be able to access them easily.
-* Twitter influencer tool, with geo-location - identifies Twitter users in specific regions of the US whose tweets in relation to refugees are widely retweeted or replied to.
-* News aggregator - identifies refugee-related news items, especially in local news, that The Hive might not otherwise be aware of.
-* Word chart - shows the frequently occurring words in social media and news items relating to refugees.
+Our team and the Hive agreed to create a tools which can help to identify Twitter users who have a history of tweeting about refugees, and have high reach and engagement. The tool identifies Twitter users in specific regions of the US whose tweets in relation to refugees are widely retweeted or replied to.
 
-# Our Live Demo
+# Our Demo
 
-![](compare.gif)
-![](search.gif)
-![](sentimentdetail.gif)
+Please see the videos below, which show how the tool works. 
+
+## Demo 1: The map interface, displaying the Twitter users by location, with the number of followers in circles. The panel on the right ranks the influencers visible in the map by their level of influence and attaches a label based on the following:
+
+1K – 100K followers = MICRO influencers
+100K – 500K followers = MID-tier influencers
+500K – 2M followers = MACRO influencers
+2M+ followers = all-STAR influencers 
+
+[Click here to see Demo 1](https://r1---sn-a5mlrn7z.c.drive.google.com/videoplayback?expire=1560479644&ei=XM8CXeLCA9PmuAXBkLDwDQ&ip=73.162.57.5&cp=QVNLUkVfWFZSRVhOOnViTTF2T1Z4SlVKem9sdmVaOFo2MXk1N1Vhb1FocXRVSFNBVVBZaTNZeHY&id=8d7dabdd3d74bb95&itag=18&source=webdrive&requiressl=yes&ttl=transient&susc=dr&driveid=1H9OkF2oEs7Je1BbJb3P9cgCHNV3OdzhZ&app=explorer&mime=video/mp4&dur=25.890&lmt=1559781014040165&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,dur,lmt&sig=ALgxI2wwRgIhAIlwShTaCNeBTym8PkTUlzi6Pf-Xrae0wW1-njCgzZtrAiEAoYdqd29KxguMX8Ju6S5JHVhoxbKnpE6BSpJS_eJgCzM=&cpn=DFnPccLhLpJyvMND&c=WEB_EMBEDDED_PLAYER&cver=20190612&redirect_counter=1&cm2rm=sn-n4vey7e&req_id=850ee9d41de836e2&cms_redirect=yes&mm=34&mn=sn-a5mlrn7z&ms=ltu&mt=1560464215&mv=u&pl=23&lsparams=mm,mn,ms,mv,pl&lsig=AHylml4wRgIhAKM460g8ISKc8l-ugduOaR3XF5vVbtWtEr2ba4mSXgRuAiEA1dIa47_IQ8pLPyiZ_ZztqWxU6g-NVQp5WQ11uitew7o=)
+
+## Demo 2: Once an influencer of interest has been identified, the user can click on their name, and will be taken to the Twitter page of that influencer. 
+
+[Click here to see Demo 2](https://r4---sn-n4v7knl6.c.drive.google.com/videoplayback?expire=1560479420&ei=fM4CXYCvNsmfugWVyo-IBA&ip=73.162.57.5&cp=QVNLUkVfWFRQQVhOOnViTTF0TVJ4SlVKem9sdGNWOFo2MXk1N1N5a1FocXRVSFNZU0xZaTNZeHY&id=f7a99f0d8ee37a19&itag=22&source=webdrive&requiressl=yes&mm=30&mn=sn-n4v7knl6&ms=nxu&mv=u&pl=23&ttl=transient&susc=dr&driveid=1HB1u-sdeUVlKqe9f2dIw0648sjvAECJf&app=explorer&mime=video/mp4&dur=16.230&lmt=1559781054530239&mt=1560464192&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,dur,lmt&sig=ALgxI2wwRQIgOmpFubvL0Ow1xOzbjkx4F3v748PhGyiTSvKGtEgI7boCIQDu8D7UdDCi8XoARqEiNGCt5VeHH8DGUxj5qKVa55B2Vw==&lsparams=mm,mn,ms,mv,pl&lsig=AHylml4wRQIgVFyIu9nRjW9GC1GwXlcfFwr7dcVZNYuYoEtRLhQdQ5wCIQDoBUteZ239Wwa0CJL9b8L6hSrsyQEgCbQbsFHqxuNJMA==&cpn=Hxf1ASixKzej8XQ6&c=WEB_EMBEDDED_PLAYER&cver=20190612)
 
 ## To use our app
 npm install --save prop-types
