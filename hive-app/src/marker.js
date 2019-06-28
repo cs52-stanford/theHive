@@ -1,3 +1,9 @@
+// component for map marker
+// given an influencer, displays their location and influencer level, as well
+// as their abbreviated follower count
+// on hover, the marker enlarges and on click, the map re-centers around it
+// and updates the active marker
+
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,7 +13,6 @@ import {
   MACRO_COLOR,
   STAR_COLOR,
 } from './data/numbers'
-// import {markerList} from './data/markerData'
 
 const starMarkerStyle = {
   position: 'absolute',
@@ -88,7 +93,7 @@ export default class Marker extends Component {
 
     let style;
 
-    // marker is influence color
+    // changes marker color to reflect the influence level
     if (this.props.marker.influence === "micro") {
       style = microMarkerStyle;
     } else if (this.props.marker.influence === "mid") {
@@ -99,13 +104,12 @@ export default class Marker extends Component {
       style = starMarkerStyle;
     }
 
-    // changes style if you hover
+    // changes marker style if you hover
     style = this.props.$hover ? markerStyleHover : style;
-    // changes style if you click
+    // changes marker style if you click
     if ((this.props.activeMarker.Handle === this.props.marker.Handle)) {
       style = markerStyleHover;
     }
-
 
     return (
       <a>

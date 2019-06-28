@@ -1,3 +1,7 @@
+// Component for the influence flag.
+// Displays the influence level, and adjusts the background color to reflect
+// appropriate influence level.
+
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -12,7 +16,6 @@ import './fonts.css'
 const INFLUENCE_FLAG_LENGTH = M_WIDTH * 2;
 
 const starInfluenceStyle = {
-  // position: 'absolute',
   width: INFLUENCE_FLAG_LENGTH*2,
   height: INFLUENCE_FLAG_LENGTH,
   minWidth: INFLUENCE_FLAG_LENGTH*2,

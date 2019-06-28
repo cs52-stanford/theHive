@@ -1,3 +1,5 @@
+// Component for an entry in the influencer table
+
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -11,9 +13,7 @@ const ENTRY_INFO_LENGTH = M_WIDTH * 4;
 
 const cellStyle = {
   display: 'flex',
-  // backgroundColor: 'whitesmoke',
   justifyContent: 'space-between',
-  // 'align-items': 'center',
   borderBottom: '2px solid whitesmoke',
 };
 
@@ -23,10 +23,8 @@ const cellSelectedStyle = {
 };
 
 const entryStyle = {
-  // backgroundColor: 'whitesmoke',
   display: 'flex',
   padding: 20,
-  // alignItems: 'stretch',
 };
 
 const imageStyle = {
@@ -94,39 +92,27 @@ export default class TableEntry extends Component {
     const imglink = "https://twitter.com/" + this.props.marker['Handle'] + "/profile_image?size=normal"
     return (
       <a>
-      <div style={cellStyleFinal}>
-
-        <div style={entryStyle}>
-          {/* image */}
-          {/*
-            <div style={imageStyle}>
-            <img
-              src={imglink}
-            />
+        <div style={cellStyleFinal}>
+        
+          <div style={entryStyle}>
+            {/* influencer info */}
+            <div style={infoStyle}>
+              <div style={nameStyle}> {this.props.marker['User']} </div>
+              <div style={handleStyle}> @{this.props.marker['Handle']} </div>
+              <div style={locStyle}> {this.props.marker['User location']} </div>
+            </div>
           </div>
-          */}
 
-          {/* info */}
-          <div style={infoStyle}>
-            <div style={nameStyle}> {this.props.marker['User']} </div>
-            <div style={handleStyle}> @{this.props.marker['Handle']} </div>
-            <div style={locStyle}> {this.props.marker['User location']} </div>
+          {/* influence flag */}
+          <div style={{
+            minWidth: M_WIDTH * 4,
+          }}>
+          {this.props.marker && this.props.marker.influence &&
+            <InfluenceFlag
+              influence={this.props.marker.influence}>
+            </InfluenceFlag>
+          }
           </div>
-        </div>
-
-        {/* flag */}
-        <div style={{
-          minWidth: M_WIDTH * 4,
-        }}>
-
-        {this.props.marker && this.props.marker.influence &&
-          <InfluenceFlag
-            influence={this.props.marker.influence}>
-          </InfluenceFlag>
-        }
-        </div>
-
-
         </div>
       </a>
     );

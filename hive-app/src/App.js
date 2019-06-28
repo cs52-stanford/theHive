@@ -13,17 +13,14 @@ import InfluenceFlag from './influenceFlag.js';
 import TableEntry from './TableEntry.js';
 import { SearchBox } from 'react-instantsearch-dom';
 import './fonts.css';
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed } from 'react-twitter-embed';
 import { Timeline } from 'react-twitter-widgets';
 
-
-// consts
+// keep track of data
 import {markerList} from './data/markerData';
 var finalData = markerList;
 
+// fetch influencer info and store it in finalData
 const makeData = () => {
-  //use this code to fetch
-  //replace console.log(data) with whatever you need to convert data to the display
   fetch('https://us-central1-angelic-artwork-220408.cloudfunctions.net/get-influencers', {
     method: 'GET',
     mode: 'cors',
@@ -53,11 +50,8 @@ const makeData = () => {
       for (var i = 0; i < microA.length; i++) {
         microA[i].influence = "micro";
       }
-      // firstPass.append(Object.values(data.macro));
-      // firstPass.append(Object.values(data.mid));
-      // firstPass.append(Object.values(data.micro));
-      console.log('returned data from makeData: ', starA);
 
+      // combine all the arrays together in order from highest rank -> lowest
       starA = starA.concat(macroA);
       starA = starA.concat(midA);
       starA = starA.concat(microA);
@@ -82,7 +76,7 @@ const getMapBounds = (map, maps, finalData) => {
   return bounds;
 };
 
-// Re-center map when resizing the window
+// re-center map when resizing the window
 const bindResizeListener = (map, maps, bounds) => {
   maps.event.addDomListenerOnce(map, 'idle', () => {
     maps.event.addDomListener(window, 'resize', () => {
@@ -96,16 +90,14 @@ const apiIsLoaded = (map, maps, finalData, e) => {
   // Get bounds by our places
   const bounds = getMapBounds(map, maps, finalData);
   // Fit map to bounds
-  // map.fitBounds(bounds);
-
+  map.fitBounds(bounds);
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
 };
 
-// abbreviates the number
+// abbreviates the number of followers on each marker
 const convertScore = (marker) => {
   var abbreviate = require('number-abbreviate');
-  // return abbreviate(Math.round(marker['Influencer-Score'])).toString();
   if (typeof marker['Followers'] === 'string') {
     return marker['Followers'];
   } else {
@@ -113,26 +105,17 @@ const convertScore = (marker) => {
   }
 }
 
-// style for title(TODO: replace later into another file)
+// style for the title
 const titleStyle = {
   color: 'black',
   fontSize: 24,
   fontFamily: 'Roboto',
   padding: 15,
-  // textAlign: 'center',
   fontWeight: 'bold',
 };
 
 class SimpleMap extends Component {
-  static defaultProps = {
-    // center: initialCenter,
-    // zoom: initialZoom
-  };
-
   static propTypes = {
-    // center: PropTypes.array,
-    // zoom: PropTypes.number,
-
     hoverKey: PropTypes.string, // @controllable
     clickKey: PropTypes.string, // @controllable
     onCenterChange: PropTypes.func, // @controllable generated fn
@@ -140,10 +123,11 @@ class SimpleMap extends Component {
     onHoverKeyChange: PropTypes.func, // @controllable generated fn
   };
 
+  // when a marker is clicked, the map re-centers around it and indicates that
+  // it's the active marker by enlarging
   _onChildClick = (map, marker, maps) => {
     this.setState({
       center: [marker.lat, marker.lng],
-      // activeMarkerIndex: marker.index, // key can't be passed as a prop
       activeMarker: marker.marker,
     });
   }
@@ -151,7 +135,6 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // default selected marker to show
       activeMarker: {
         'Handle': 'twitter',
         'User': 'No selected marker',
@@ -181,14 +164,12 @@ class SimpleMap extends Component {
   render() {
     const handle = this.state.activeMarker.Handle;
     return (
-      // Important! Always set the container height explicitly
-      // <div style={{ height: '100vh', width: '100%' }}>
       <div>
       { this.state && this.state.data &&
         <SplitterLayout
         primaryIndex={1}
         primaryMinSize={window.innerWidth*0.2}
-        // restrict table size to 25% only
+        // restrict table size to 20% only
         secondaryMinSize={window.innerWidth*0.8}>
           <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMap
@@ -204,7 +185,6 @@ class SimpleMap extends Component {
                   <Marker
                     key={index}
                     index={index}
-                    // activeMarkerIndex={this.state.activeMarkerIndex}
                     activeMarker = {this.state.activeMarker}
                     lat={marker['Latitude']}
                     lng={marker['Longitude']}
@@ -219,40 +199,45 @@ class SimpleMap extends Component {
 
           {/* sidebar */}
           <div>
+            <div style={titleStyle}> Selected Marker </div>
 
-          <div style={titleStyle}> Selected Marker </div>
-          <TableEntry
-            activeMarker = {this.state.activeMarker}
-            marker={this.state.activeMarker}
-            >
-          </TableEntry>
-          <Timeline
-            dataSource={{
-              sourceType: 'profile',
-              screenName: (this.state.activeMarker.Handle).toString(),
-            }}
-            options={{
-              username: 'Twitter Widget',
-              height: '400'
-            }}
-          />
+            {/* active marker */}
+            <TableEntry
+              activeMarker = {this.state.activeMarker}
+              marker={this.state.activeMarker}
+              >
+            </TableEntry>
 
-          <div style = {{
-            border: '1px solid whitesmoke',
-          }} />
-          <div style={titleStyle}> Influencers </div>
-          {(finalData).map((marker, index) => (
-                <TableEntry
-                  key={index}
-                  index={index}
-                  activeMarker = {this.state.activeMarker}
-                  marker={marker}
-                  >
-                </TableEntry>
-            ))}
-          </div>
-      </SplitterLayout>
-      }
+            {/* active marker's twitter feed */}
+            <Timeline
+              dataSource={{
+                sourceType: 'profile',
+                screenName: (this.state.activeMarker.Handle).toString(),
+              }}
+              options={{
+                username: 'Twitter Widget',
+                height: '400'
+              }}
+            />
+
+            <div style = {{
+              border: '1px solid whitesmoke',
+            }} />
+
+            {/* influencer list */}
+            <div style={titleStyle}> Influencers </div>
+            {(finalData).map((marker, index) => (
+                  <TableEntry
+                    key={index}
+                    index={index}
+                    activeMarker = {this.state.activeMarker}
+                    marker={marker}
+                    >
+                  </TableEntry>
+              ))}
+            </div>
+        </SplitterLayout>
+        }
       </div>
 
     );
