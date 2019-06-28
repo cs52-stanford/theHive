@@ -1,5 +1,5 @@
 // Component for an entry in the influencer table
-
+// Includes name, handle, location, and influence flag
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -75,25 +75,21 @@ export default class TableEntry extends Component {
   static propTypes = {
     influence: PropTypes.number,
   };
-
-  static defaultProps = {
-  };
-
   constructor(props) {
     super(props);
   }
 
   render() {
+    // highlights the entry if its marker is active (has been clicked)
     let cellStyleFinal = cellStyle;
     if (this.props.activeMarker['Handle'] === this.props.marker['Handle']) {
       cellStyleFinal = cellSelectedStyle;
     }
 
-    const imglink = "https://twitter.com/" + this.props.marker['Handle'] + "/profile_image?size=normal"
     return (
       <a>
         <div style={cellStyleFinal}>
-        
+
           <div style={entryStyle}>
             {/* influencer info */}
             <div style={infoStyle}>

@@ -15,6 +15,7 @@ import './fonts.css'
 
 const INFLUENCE_FLAG_LENGTH = M_WIDTH * 2;
 
+// style for STAR influencer flags
 const starInfluenceStyle = {
   width: INFLUENCE_FLAG_LENGTH*2,
   height: INFLUENCE_FLAG_LENGTH,
@@ -70,6 +71,7 @@ export default class InfluenceFlag extends Component {
   render() {
     let influenceText;
     let style;
+    {/* sets the correct style and text */}
     if (this.props.influence === "micro") {
       influenceText = "MICRO";
       style = microInfluenceStyle;

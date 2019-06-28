@@ -64,7 +64,7 @@ const makeData = () => {
     });
 };
 
-// Return map bounds based on list of places
+// return map bounds based on list of places
 const getMapBounds = (map, maps, finalData) => {
   const bounds = new maps.LatLngBounds();
   finalData.forEach((marker) => {
@@ -85,7 +85,7 @@ const bindResizeListener = (map, maps, bounds) => {
   });
 };
 
-// Fit map to its bounds after the api is loaded
+// fit map to its bounds after the api is loaded
 const apiIsLoaded = (map, maps, finalData, e) => {
   // Get bounds by our places
   const bounds = getMapBounds(map, maps, finalData);
@@ -165,11 +165,11 @@ class SimpleMap extends Component {
     const handle = this.state.activeMarker.Handle;
     return (
       <div>
+      {/* restrict sidebar to 20% of the screen */}
       { this.state && this.state.data &&
         <SplitterLayout
         primaryIndex={1}
         primaryMinSize={window.innerWidth*0.2}
-        // restrict table size to 20% only
         secondaryMinSize={window.innerWidth*0.8}>
           <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMap
@@ -201,7 +201,7 @@ class SimpleMap extends Component {
           <div>
             <div style={titleStyle}> Selected Marker </div>
 
-            {/* active marker */}
+            {/* active marker entry */}
             <TableEntry
               activeMarker = {this.state.activeMarker}
               marker={this.state.activeMarker}
@@ -220,6 +220,7 @@ class SimpleMap extends Component {
               }}
             />
 
+            {/* divider */}
             <div style = {{
               border: '1px solid whitesmoke',
             }} />
@@ -243,7 +244,6 @@ class SimpleMap extends Component {
     );
   }
 }
-
 
 
 export default SimpleMap;
